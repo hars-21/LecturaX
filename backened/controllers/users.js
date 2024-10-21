@@ -1,11 +1,12 @@
+const profile = require("../models/profile");
 const userModel = require("../models/user");
 
 module.exports.signup = async (req, res) => {
   try {
     let { username, email, password, role } = req.body;
     const newUser = new userModel({ username, email, role });
+    const newProfile = new profile({ username, email, role });
     const registeredUser = await userModel.register(newUser, password);
-    console.log(registeredUser);
     req.login(registeredUser, (err) => {
       if (err) {
         return next(err);
