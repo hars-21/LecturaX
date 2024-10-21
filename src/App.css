@@ -23,3 +23,47 @@
   top: 11% !important;
   z-index: 9999 !important;
 }
+
+a {
+  text-decoration: none;
+}
+
+.animated-btn {
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 110px;
+  transition: color 0.35s linear, outline 0.35s linear;
+  overflow: clip;
+  color: #fff;
+  outline: 1px solid hsla(0, 0%, 100%, 0.2);
+}
+
+.animated-btn::before {
+  content: "";
+  position: absolute;
+  top: -1%;
+  bottom: -1%;
+  left: -0.8px;
+  right: -0.8px;
+  height: 102%;
+  background: #ffa200;
+  transform: scaleY(0);
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: top;
+  z-index: -1;
+}
+
+.animated-btn:hover::before {
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+
+.animated-btn:hover {
+  color: #000 !important;
+  outline: 1px solid #ffa200;
+}

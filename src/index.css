@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Inter:opsz,wght@14..32,100..900&family=Montserrat:wght@100..900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Montserrat", "Arima" sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -11,18 +13,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+/* Default Styling */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
-/* Global Styling */
 body {
   margin: 0;
-  font-family: 'Verdana', sans-serif;
+  font-family: "Inter", sans-serif;
   color: #ffffff;
-  background-color: #111;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffa200;
+  border-radius: 2px;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+}
+
+.arima {
+  font-family: "Arima", sans-serif;
 }
