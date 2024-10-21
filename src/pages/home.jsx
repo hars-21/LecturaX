@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 
+// Feature Component
 const Feature = ({ title, description, imgSrc, direction }) => {
   return (
     <>
@@ -12,7 +13,7 @@ const Feature = ({ title, description, imgSrc, direction }) => {
         </div>
         <div className="feature-visual">
           <div className="feature-img">
-            <img src={imgSrc} alt="Feature Image" />
+            <img src={imgSrc} alt="Feature Image" className="feat-image" />
           </div>
         </div>
       </div>
@@ -20,7 +21,9 @@ const Feature = ({ title, description, imgSrc, direction }) => {
   );
 };
 
+// Home Page Component
 const Home = () => {
+  // Testimonials Data
   const testimonials = [
     "I'm thoroughly impressed by the platform's innovative approach. This thoughtful design promises to make learning more efficient, user-friendly and engaging, eliminating the need to switch between multiple tabs. The potential to streamline the learning process is vast. No doubt that this platform will have a profound impact on the future of learning.",
     "The integration of AI -generated teaching paths and AI-driven doubt-solving kits is particularly exciting, as it offers personalized support for students and teachers. The emphasis on integrity and security is also crucial, especially in today's digital landscape.",
@@ -32,6 +35,7 @@ const Home = () => {
     "Your new platform sounds amazing! It's great that you're putting everything in one place, making it easy for students to access what they need. The use of AI to help teachers and students is also a fantastic feature. I like that it keeps students on track with assignments and timelines, promoting consistent progress.",
     "Prioritizing security and fairness is really important, especially after the challenges faced during the pandemic. I'm excited to see the user interface and give more feedback.",
   ];
+
   return (
     <>
       {/* Hero Section */}
@@ -48,12 +52,9 @@ const Home = () => {
           educators with advanced tools and insights.
         </div>
         <div className="hero-cta">
-          <Link to="/signin" className="cta-btn">
+          <Link to="/signin" className="animated-btn">
             Get Started
           </Link>
-          {/* <Link to="/dashboard" className="cta-btn">
-            Go to Dashboard
-          </Link> */}
         </div>
       </section>
 
@@ -68,25 +69,25 @@ const Home = () => {
           <Feature
             title="Real-time Analytics"
             description="Discover the power of real-time analytics with our advanced dashboard feature. Whether you're tracking individual student progress or analyzing class-wide trends, our dashboard provides you with up-to-the-minute data."
-            imgSrc="/vite.svg"
+            imgSrc="/assets/analytics.png"
             direction="same"
           />
           <Feature
             title="AI Chatbot"
             description="Meet your new learning assistant, available 24/7. Our real-time AI chatbot is designed to provide immediate help and guidance, making your learning experience smoother and more engaging."
-            imgSrc="/vite.svg"
+            imgSrc="/assets/chatbot.jpg"
             direction="reverse"
           />
           <Feature
             title="Upload Functionality"
             description="Our chatbot goes beyond just answering questions—it allows you to upload files, photos, and books, making it a versatile tool for all your learning needs. Easily upload documents, photos, or books and ask the AI questions about the content."
-            imgSrc="/vite.svg"
+            imgSrc="/assets/cloud.jpg"
             direction="same"
           />
           <Feature
             title="User-friendly Platform"
             description="Experience a platform designed with you in mind. Our site is crafted to be user-friendly and highly interactive, ensuring that both teachers and students can navigate with ease and engage fully in their educational journey."
-            imgSrc="/vite.svg"
+            imgSrc="/assets/ui.jpg"
             direction="reverse"
           />
         </div>

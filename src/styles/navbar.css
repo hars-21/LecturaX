@@ -1,13 +1,8 @@
 /* Navbar Container */
 .navbar {
-  position: fixed;
   color: #ffffff;
   width: 100vw;
-  padding: 0.75rem 1.5rem;
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  z-index: 99999;
+  padding: 1.25rem 1.5rem;
 }
 
 /* Inner Container */
@@ -48,8 +43,18 @@
 /* Navigation Links */
 .navbar-links {
   display: flex;
-  justify-content: center;
-  flex-grow: 1;
+  justify-content: space-evenly;
+  padding: 0.25rem 2rem;
+  position: fixed;
+  width: 45%;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  z-index: 99999;
 }
 
 .nav-link {
@@ -62,13 +67,9 @@
 
 .nav-link:hover {
   color: #fba202;
-  text-decoration: underline;
 }
 
 /* Login Button */
-.navbar-login {
-  margin-left: auto;
-}
 
 .login-button {
   background-color: transparent;
@@ -84,18 +85,11 @@
   background-color: #fba202;
 }
 
-#login-btn {
-  display: block;
-}
-
-#login-mobile {
-  display: none;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     background-color: #000;
+    padding: 0.5rem 1rem;
   }
 
   .menu-toggle {
@@ -130,15 +124,6 @@
   .navbar-login {
     margin-left: 0;
     padding: 12px 0;
-    width: 100%;
     text-align: center;
-  }
-
-  #login-mobile {
-    display: block;
-  }
-
-  #login-btn {
-    display: none;
   }
 }

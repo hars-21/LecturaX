@@ -4,7 +4,7 @@ import "../styles/footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-container">
+      <div className="footer-container arima">
         {/* Social Links */}
         <div className="footer-section">
           <h2 className="footer-heading">Let's connect with our socials</h2>
@@ -50,8 +50,8 @@ const Footer = () => {
         {/* Contact Information */}
         <div className="footer-section">
           <h3 className="footer-heading">Get in Touch</h3>
-          <p className="footer-info">Phone: +918368194042</p>
-          <p className="footer-info"> help.lecturax@gmail.com</p>
+          <p className="footer-info">Phone: +91 98980 57571</p>
+          <p className="footer-info">Email: help.lecturax@gmail.com</p>
           <p className="footer-info">
             Galgotias University, Greater Noida, Sec-17A
           </p>
@@ -60,9 +60,8 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="footer-bottom">
-        <p className="footer-copyright">
-          Copyright © 2024 Sorting LecturaX Technologies Pvt Ltd. All Rights
-          Reserved.
+        <p className="footer-copyright montserrat">
+          © 2024 LecturaX Technologies Pvt Ltd. All Rights Reserved.
         </p>
       </div>
     </footer>

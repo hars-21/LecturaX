@@ -2,15 +2,15 @@
 .footer {
   background-color: #0b0b0b;
   color: #ffffff;
-  padding: 40px 20px;
+  padding: 1.75rem;
   text-align: center;
-  font-family: "Trebuchet MS", Arial, sans-serif;
 }
 
 .footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 1rem 0;
 }
 
 .footer-section {
@@ -63,12 +63,14 @@
 /* Footer Bottom */
 .footer-bottom {
   margin-top: 1.5rem;
-  border-top: 1px solid #ffffff;
+  border-top: 1px solid #222;
   padding-top: 1.5rem;
 }
 
 .footer-copyright {
-  font-size: 14px;
+  font-size: 1rem;
+  color: #999;
+  letter-spacing: 1px;
 }
 
 /* Responsive Design */
@@ -88,5 +90,9 @@
 @media (max-width: 767px) {
   .footer-section {
     width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 0;
   }
 }
