@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 // Feature Component
 const Feature = ({ title, description, imgSrc, direction }) => {
@@ -54,7 +55,7 @@ const Home = () => {
         </div>
         <div className="hero-cta">
           <Link to="/signin" className="animated-btn">
-            Get Started
+            Get Started <FaArrowRightLong />
           </Link>
         </div>
       </section>

@@ -16,9 +16,7 @@
 
 /* Logo */
 .navbar-logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fba202;
+  width: 3.5rem;
 }
 
 /* Hamburger Menu (for Mobile) */
@@ -47,7 +45,7 @@
   padding: 0.25rem 2rem;
   position: fixed;
   width: 45%;
-  top: 1rem;
+  top: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 25px;
