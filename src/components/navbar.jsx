@@ -24,7 +24,7 @@ const Navbar = () => {
               Home
             </Link>
             <Link to="/pricing" className="nav-link">
-              Plans & Pricing
+              Pricing
             </Link>
             <Link to="/about" className="nav-link">
               About Us

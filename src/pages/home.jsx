@@ -8,7 +8,7 @@ const Feature = ({ title, description, imgSrc, direction }) => {
     <>
       <div className={`feature-item ${direction}`}>
         <div className="feature-about">
-          <div className="feature-title">{title}</div>
+          <div className="feature-title gold arima">{title}</div>
           <div className="feature-desc">{description}</div>
         </div>
         <div className="feature-visual">
@@ -40,12 +40,13 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="hero">
-        <video autoPlay muted className="video-bg">
+        {/* <video autoPlay muted className="video-bg">
           <source src="/assets/background.mp4" type="video/mp4" />
-        </video>
+        </video> */}
+        <div className="hero-bg"></div>
         <div className="hero-head">
-          Unlock the power of learning with
-          <span>LecturaX</span>
+          Unlock the Power of Learning with
+          <span className="gold arima">LecturaX</span>
         </div>
         <div className="hero-subhead">
           LecturaX is a comprehensive educational platform designed to empower
@@ -61,7 +62,7 @@ const Home = () => {
       {/* Features Section */}
       <section className="features">
         <div className="features-head">
-          <span>Discover</span> LecturaX Capabilities
+          <span className="gold arima">Discover</span> LecturaX Capabilities
           <p className="features-subhead">Discover LecturaX Capabilities</p>
         </div>
 
@@ -98,7 +99,7 @@ const Home = () => {
         <div className="testimonial-intro">
           <div className="testimonial-caption">TESTIMONIALS</div>
           <div className="testimonial-title">
-            Don't just take <span>our word</span> for it!
+            Don't just take <span className="gold arima">our word</span> for it!
           </div>
           <div className="testimonial-subtitle">
             See what the community has to say about LecturaX

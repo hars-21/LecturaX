@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+.gold {
+  color: #fba202;
+}
+
 .animated-btn {
   font-family: "Montserrat", sans-serif;
   position: relative;
