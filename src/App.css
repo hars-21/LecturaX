@@ -32,6 +32,11 @@ a {
   color: #fba202;
 }
 
+/* Logo */
+.logo {
+  width: 3.5rem;
+}
+
 .animated-btn {
   font-family: "Montserrat", sans-serif;
   position: relative;

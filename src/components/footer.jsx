@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles/footer.css";
 import { Link } from "react-router-dom";
+import logo from "/assets/logo.png";
 import {
   FaPhone,
   FaEnvelope,
@@ -16,9 +17,9 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container arima">
         <div className="footer-section head-footer">
-          <img src="" alt="" />
+          <img src={logo} alt="Logo" className="logo" />
           <div className="footer-heading-main">
-            Master Skills with AI-Powered Precision.
+            Master Skills with AI-Powered Precision
           </div>
           <Link to="/signin" className="animated-btn footer-btn">
             Join Now <FaArrowRightLong />

@@ -1,23 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash, FaUser, FaLock } from "react-icons/fa";
 
 const Signin = () => {
   const redirect = useNavigate();
-  const icon = useRef();
-  const pswdField = useRef();
   const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const showPassword = () => {
-    if (pswdField.current.type === "password") {
-      pswdField.current.type = "text";
-      icon.current.src = "/assets/show-eye.svg";
-    } else {
-      pswdField.current.type = "password";
-      icon.current.src = "/assets/hide-eye.svg";
-    }
+  const toggleVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
   const handleChange = (e) => {
@@ -58,7 +52,7 @@ const Signin = () => {
               <label className="form-label" htmlFor="username">
                 Username
               </label>
-              <img src="/assets/user.svg" alt="user" className="input-icon" />
+              <FaUser className="input-icon" />
               <input
                 type="name"
                 className="form-control"
@@ -74,18 +68,12 @@ const Signin = () => {
               <label className="form-label" htmlFor="password">
                 Password
               </label>
-              <img src="/assets/lock.svg" alt="lock" className="input-icon" />
-              <span onClick={showPassword}>
-                <img
-                  ref={icon}
-                  src="/assets/hide-eye.svg"
-                  alt="hidden"
-                  className="pswd-toggle"
-                />
+              <FaLock className="input-icon" />
+              <span onClick={toggleVisibility} className="pswd-toggle">
+                {passwordVisible ? <FaEye /> : <FaEyeSlash />}
               </span>
               <input
-                ref={pswdField}
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 className="form-control"
                 id="password"
                 placeholder="••••••"
