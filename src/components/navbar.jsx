@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "../styles/navbar.css"; // Importing the CSS file
+import "../styles/navbar.css";
+import logo from "/assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
         <div className="navbar-container">
           {/* Logo */}
           <Link to="/" className="">
-            <div className="navbar-logo">LecturaX</div>
+            <img src={logo} alt="Logo" className="navbar-logo" />
           </Link>
 
           {/* Navigation Links */}
@@ -36,7 +37,7 @@ const Navbar = () => {
 
           {/* Login Button */}
           <div className="navbar-login">
-            <Link to="/signin" className="animated-btn">
+            <Link to="/signup" className="animated-btn">
               Create Account
             </Link>
           </div>
