@@ -39,17 +39,19 @@ a {
 
 .animated-btn {
   font-family: "Montserrat", sans-serif;
-  position: relative;
+  color: #fff;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  position: relative;
   padding: 0.5rem 1.5rem;
   border-radius: 110px;
-  transition: color 0.35s linear, outline 0.35s linear;
-  overflow: clip;
-  color: #fff;
   outline: 1px solid hsla(0, 0%, 100%, 0.2);
+  transition: color 0.35s linear, outline 0.35s linear;
+  z-index: 0;
+  overflow: clip;
 }
 
 .animated-btn::before {
@@ -75,4 +77,28 @@ a {
 .animated-btn:hover {
   color: #000 !important;
   outline: 1px solid #ffa200;
+}
+
+.underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  background-color: #fba202;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
