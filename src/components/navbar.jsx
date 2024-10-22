@@ -18,14 +18,12 @@ const Navbar = () => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // Show navbar when scrolling down, hide when scrolling up
     if (currentScrollY < lastScrollY) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
 
-    // Save the current scroll position
     setLastScrollY(currentScrollY);
   };
 
@@ -37,6 +35,12 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
+  useEffect(() => {
+    setIsVisible(true);
+
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -53,16 +57,16 @@ const Navbar = () => {
               isVisible ? "nav-visible" : "nav-hidden"
             }`}
           >
-            <Link to="/" className="nav-link">
+            <Link to="/" className="nav-link underline-animation">
               Home
             </Link>
-            <Link to="/pricing" className="nav-link">
+            <Link to="/pricing" className="nav-link underline-animation">
               Pricing
             </Link>
-            <Link to="/about" className="nav-link">
+            <Link to="/about" className="nav-link underline-animation">
               About Us
             </Link>
-            <Link to="/support" className="nav-link">
+            <Link to="/support" className="nav-link underline-animation">
               Support
             </Link>
           </div>

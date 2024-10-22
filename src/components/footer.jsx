@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="footer-heading-main">
             Master Skills with AI-Powered Precision
           </div>
-          <Link to="/signin" className="animated-btn footer-btn">
+          <Link to="/signin" className="animated-btn">
             Join Now <FaArrowRightLong />
           </Link>
         </div>
@@ -31,16 +31,24 @@ const Footer = () => {
           <h3 className="footer-heading">Pages</h3>
           <ul className="footer-links">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className="underline-animation">
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/services">Services</Link>
+              <Link to="/services" className="underline-animation">
+                Services
+              </Link>
             </li>
             <li>
-              <Link to="/faq">FAQ</Link>
+              <Link to="/faq" className="underline-animation">
+                FAQ
+              </Link>
             </li>
             <li>
-              <Link to="/pricing">Pricing</Link>
+              <Link to="/pricing" className="underline-animation">
+                Pricing
+              </Link>
             </li>
           </ul>
         </div>
@@ -50,16 +58,24 @@ const Footer = () => {
           <h3 className="footer-heading">Company</h3>
           <ul className="footer-links">
             <li>
-              <Link to="/about">About Us</Link>
+              <Link to="/about" className="underline-animation">
+                About Us
+              </Link>
             </li>
             <li>
-              <Link to="/support">Support</Link>
+              <Link to="/support" className="underline-animation">
+                Support
+              </Link>
             </li>
             <li>
-              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/privacy" className="underline-animation">
+                Privacy Policy
+              </Link>
             </li>
             <li>
-              <Link to="/terms">Terms & Conditions</Link>
+              <Link to="/terms" className="underline-animation">
+                Terms of Service
+              </Link>
             </li>
           </ul>
         </div>
@@ -69,10 +85,11 @@ const Footer = () => {
           <h3 className="footer-heading">Get in Touch</h3>
           <a href="tel:+919898057571" className="footer-info">
             <FaPhone />
-            <span>+91 98980 57571</span>
+            <span className="underline-animation">+91 98980 57571</span>
           </a>
           <a href="mailto:help.lecturax@gmail.com" className="footer-info">
-            <FaEnvelope /> <span>help.lecturax@gmail.com</span>
+            <FaEnvelope />{" "}
+            <span className="underline-animation">help.lecturax@gmail.com</span>
           </a>
           {/* Social Links */}
           <div className="social-icons">

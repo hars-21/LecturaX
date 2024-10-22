@@ -25,10 +25,6 @@
   padding: 0.25rem 0 1.5rem 0;
 }
 
-.footer-btn {
-  width: fit-content;
-}
-
 .footer-heading {
   font-size: 1.2rem;
   margin-bottom: 10px;
@@ -47,11 +43,6 @@
 .footer-links a {
   color: #ffffff;
   font-size: 0.9rem;
-  transition: color 0.3s;
-}
-
-.footer-links a:hover {
-  color: #fba202;
 }
 
 .footer-info {
@@ -62,10 +53,6 @@
   align-items: center;
   gap: 0.5rem;
   color: #ffffff;
-}
-
-.footer-info:hover {
-  color: #fba202;
 }
 
 .social-icons {
