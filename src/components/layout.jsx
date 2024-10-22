@@ -3,6 +3,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../styles/layout.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaBell } from "react-icons/fa";
+import logo from "/assets/logo.png";
 
 const Layout = () => {
   const redirect = useNavigate();
@@ -55,12 +57,16 @@ const Layout = () => {
             <span></span>
             <span></span>
           </div>
-          <Link to="/dashboard" className="logo">
-            LecturaX
+          <Link to="/dashboard">
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ width: "2.5rem", paddingTop: "0.25rem" }}
+            />
           </Link>
         </div>
         <div id="end">
-          <img src="/assets/notification.svg" alt="Bell Icon" />
+          <FaBell className="notify" />
           <div className="profile-dropdown" onClick={toggleDropdown}>
             <span>{username}</span>
             <div className={`profile-menu ${dropdown ? "expand" : ""}`}>

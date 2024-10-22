@@ -1,16 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/login.css";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash, FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 
 const Signup = () => {
   const redirect = useNavigate();
-  const icon = useRef();
-  const icon_c = useRef();
-  const pswdField = useRef();
-  const pswdField_c = useRef();
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -19,15 +16,16 @@ const Signup = () => {
   });
   const [role, setRole] = useState("student");
 
-  function showPassword(icon, pswd) {
-    if (pswd.current.type === "password") {
-      pswd.current.type = "text";
-      icon.current.src = "/assets/show-eye.svg";
-    } else {
-      pswd.current.type = "password";
-      icon.current.src = "/assets/hide-eye.svg";
-    }
-  }
+  const [pswdVisible, setPswdVisible] = useState(false);
+  const [cPswdVisible, setCPswdVisible] = useState(false);
+
+  const togglePassword = () => {
+    setPswdVisible(!pswdVisible);
+  };
+
+  const toggleConfirmPassword = () => {
+    setCPswdVisible(!cPswdVisible);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -104,7 +102,7 @@ const Signup = () => {
               <label className="form-label" htmlFor="username">
                 Username
               </label>
-              <img src="/assets/user.svg" alt="user" className="input-icon" />
+              <FaUser className="input-icon" />
               <input
                 type="name"
                 className="form-control"
@@ -120,11 +118,7 @@ const Signup = () => {
               <label className="form-label" htmlFor="email">
                 Email ID
               </label>
-              <img
-                src="/assets/mail.svg"
-                alt="envelope"
-                className="input-icon"
-              />
+              <FaEnvelope className="input-icon" />
               <input
                 type="email"
                 className="form-control"
@@ -140,18 +134,12 @@ const Signup = () => {
               <label className="form-label" htmlFor="password">
                 Password
               </label>
-              <img src="/assets/lock.svg" alt="lock" className="input-icon" />
-              <span onClick={() => showPassword(icon, pswdField)}>
-                <img
-                  ref={icon}
-                  src="/assets/hide-eye.svg"
-                  alt="hidden"
-                  className="pswd-toggle"
-                />
+              <FaLock className="input-icon" />
+              <span onClick={togglePassword} className="pswd-toggle">
+                {pswdVisible ? <FaEye /> : <FaEyeSlash />}
               </span>
               <input
-                ref={pswdField}
-                type="password"
+                type={pswdVisible ? "text" : "password"}
                 className="form-control"
                 id="password"
                 placeholder="Password"
@@ -165,18 +153,12 @@ const Signup = () => {
               <label className="form-label" htmlFor="c_password">
                 Confirm Password
               </label>
-              <img src="/assets/lock.svg" alt="lock" className="input-icon" />
-              <span onClick={() => showPassword(icon_c, pswdField_c)}>
-                <img
-                  ref={icon_c}
-                  src="/assets/hide-eye.svg"
-                  alt="hidden"
-                  className="pswd-toggle"
-                />
+              <FaLock className="input-icon" />
+              <span onClick={toggleConfirmPassword} className="pswd-toggle">
+                {cPswdVisible ? <FaEye /> : <FaEyeSlash />}
               </span>
               <input
-                ref={pswdField_c}
-                type="password"
+                type={cPswdVisible ? "text" : "password"}
                 className="form-control"
                 id="password_confirm"
                 placeholder="Re-enter your password"

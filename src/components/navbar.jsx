@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
-import "../styles/navbar.css"; // Importing the CSS file
+import "../styles/navbar.css";
+import logo from "/assets/logo.png";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,22 +12,52 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Show navbar when scrolling down, hide when scrolling up
+    if (currentScrollY < lastScrollY) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+
+    // Save the current scroll position
+    setLastScrollY(currentScrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
       <nav className="navbar">
         <div className="navbar-container">
           {/* Logo */}
           <Link to="/" className="">
-            <div className="navbar-logo">LecturaX</div>
+            <img src={logo} alt="Logo" className="logo" />
           </Link>
 
           {/* Navigation Links */}
-          <div className={`navbar-links ${isOpen ? "active" : ""}`}>
+          <div
+            className={`navbar-links ${isOpen ? "active" : ""} ${
+              isVisible ? "nav-visible" : "nav-hidden"
+            }`}
+          >
             <Link to="/" className="nav-link">
               Home
             </Link>
             <Link to="/pricing" className="nav-link">
-              Plans & Pricing
+              Pricing
             </Link>
             <Link to="/about" className="nav-link">
               About Us
@@ -36,7 +69,7 @@ const Navbar = () => {
 
           {/* Login Button */}
           <div className="navbar-login">
-            <Link to="/signin" className="animated-btn">
+            <Link to="/signup" className="animated-btn">
               Create Account
             </Link>
           </div>
@@ -44,11 +77,7 @@ const Navbar = () => {
           {/* Hamburger Menu Button for Mobile */}
           <div className="menu-toggle">
             <button onClick={toggleMenu} className="menu-button">
-              {isOpen ? (
-                <img src="/assets/close.svg" alt="Close" />
-              ) : (
-                <img src="/assets/menu.svg" alt="Menu" />
-              )}
+              {isOpen ? <IoClose /> : <HiMenuAlt3 />}
             </button>
           </div>
         </div>
