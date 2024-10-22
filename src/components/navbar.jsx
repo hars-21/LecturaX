@@ -18,14 +18,12 @@ const Navbar = () => {
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
 
-    // Show navbar when scrolling down, hide when scrolling up
     if (currentScrollY < lastScrollY) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
 
-    // Save the current scroll position
     setLastScrollY(currentScrollY);
   };
 
@@ -37,6 +35,12 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
+
+  useEffect(() => {
+    setIsVisible(true);
+
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

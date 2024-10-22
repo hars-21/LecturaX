@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/home.css";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 // Feature Component
 const Feature = ({ title, description, imgSrc, direction }) => {
@@ -45,19 +46,34 @@ const Home = () => {
           <source src="/assets/background.mp4" type="video/mp4" />
         </video> */}
         <div className="hero-bg"></div>
-        <div className="hero-head">
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="hero-head"
+        >
           Unlock the Power of Learning with
           <span className="gold arima">LecturaX</span>
-        </div>
-        <div className="hero-subhead">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0.9 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="hero-subhead"
+        >
           LecturaX is a comprehensive educational platform designed to empower
           educators with advanced tools and insights.
-        </div>
-        <div className="hero-cta">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="hero-cta"
+        >
           <Link to="/signin" className="animated-btn">
             Get Started <FaArrowRightLong />
           </Link>
-        </div>
+        </motion.div>
       </section>
 
       {/* Features Section */}
