@@ -9,15 +9,25 @@ const Feature = ({ title, description, imgSrc, direction }) => {
   return (
     <>
       <div className={`feature-item ${direction}`}>
-        <div className="feature-about">
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, delay: 0.5 }}
+          className="feature-about"
+        >
           <div className="feature-title gold arima">{title}</div>
           <div className="feature-desc">{description}</div>
-        </div>
-        <div className="feature-visual">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, delay: 1 }}
+          className="feature-visual"
+        >
           <div className="feature-img">
             <img src={imgSrc} alt="Feature Image" className="feat-image" />
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   );

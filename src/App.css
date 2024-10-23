@@ -102,3 +102,15 @@ a {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+@media (max-width: 426px) {
+  .logo {
+    width: 2.5rem;
+    padding-top: 0.25rem;
+  }
+
+  .animated-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+  }
+}
