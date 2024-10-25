@@ -58,27 +58,12 @@
   padding: 1.75rem;
 }
 
-.cta-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 25px;
-  background-color: #fba202;
-  color: #000;
-  font-size: 1.2rem;
-  transition: all 0.5s ease;
-  text-decoration: none;
-}
-
-.cta-btn:hover {
-  background-color: #fff;
-  color: #000000;
-}
-
 /* ----------------------------------- */
 
 /* Features Section */
 .features {
   padding: 2rem 5rem;
-  background-color: #0a0a0a;
+  background-color: #000;
 }
 
 .features-head {
@@ -250,10 +235,6 @@
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-  .hero {
-    padding: 10rem 0;
-  }
-
   .hero-head {
     font-size: 2rem;
     width: 90%;
@@ -267,12 +248,6 @@
   .hero-subhead {
     font-size: 1.15rem;
     padding: 0 1rem;
-  }
-
-  .cta-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    margin-top: 1rem;
   }
 
   /* Feature Section */

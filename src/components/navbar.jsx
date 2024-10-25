@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "../styles/navbar.css";
 import logo from "/assets/logo.png";
-import { HiMenuAlt3 } from "react-icons/hi";
+import { HiMenuAlt4 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 
 const Navbar = () => {
@@ -71,18 +71,18 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Login Button */}
-          <div className="navbar-login">
+          <div className="nav-options">
+            {/* Login Button */}
             <Link to="/signup" className="animated-btn">
               Create Account
             </Link>
-          </div>
 
-          {/* Hamburger Menu Button for Mobile */}
-          <div className="menu-toggle">
-            <button onClick={toggleMenu} className="menu-button">
-              {isOpen ? <IoClose /> : <HiMenuAlt3 />}
-            </button>
+            {/* Hamburger Menu Button for Mobile */}
+            <div className="menu-toggle">
+              <button onClick={toggleMenu} className="menu-button">
+                {isOpen ? <IoClose /> : <HiMenuAlt4 />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
