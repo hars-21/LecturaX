@@ -91,47 +91,47 @@ const Layout = () => {
         <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
           <nav>
             <ul>
-              <li>
+              <li className="underline-animation">
                 <Link to="/dashboard" className="dash-links">
                   Dashboard
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/analytics" className="dash-links">
                   My Analytics
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/courses" className="dash-links">
                   Check courses
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/doubt" className="dash-links">
                   Doubt Solving
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/test" className="dash-links">
                   Test & Results
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/timetable" className="dash-links">
                   Time-Table
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/classes" className="dash-links">
                   Live classes
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/support" className="dash-links">
                   Support
                 </Link>
               </li>
-              <li>
+              <li className="underline-animation">
                 <Link to="/contact" className="dash-links">
                   Contact
                 </Link>

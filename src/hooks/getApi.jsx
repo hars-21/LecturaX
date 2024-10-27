@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const getApi = async (url) => {
+const getApi = (urlPath) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -11,7 +11,7 @@ const getApi = async (url) => {
       try {
         setLoading(true);
         setError(false);
-        const response = await axios.get(url);
+        const response = await axios.get(urlPath);
         setData(response.data);
         setLoading(false);
       } catch (error) {
