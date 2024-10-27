@@ -90,7 +90,9 @@ const Home = () => {
       <section className="features">
         <div className="features-head">
           <span className="gold arima">Discover</span> LecturaX Capabilities
-          <p className="features-subhead">Discover LecturaX Capabilities</p>
+          <p className="features-subhead">
+            Explore the Tools That Make Learning Smarter and Teaching Simpler
+          </p>
         </div>
 
         <div className="feature-container">
