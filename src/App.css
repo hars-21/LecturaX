@@ -20,7 +20,7 @@
 }
 
 .Toastify__toast-container {
-  top: 11% !important;
+  top: 5rem !important;
   z-index: 9999 !important;
 }
 

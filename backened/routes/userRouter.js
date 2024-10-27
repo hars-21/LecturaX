@@ -16,6 +16,10 @@ router.post(
   userController.signin
 );
 
+router.get("/", (req, res) => {
+  req.user ? res.send("Logged In") : res.send("Logged Out");
+});
+
 router.get("/signout", userController.signout);
 
 module.exports = router;

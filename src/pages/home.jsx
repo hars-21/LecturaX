@@ -90,7 +90,9 @@ const Home = () => {
       <section className="features">
         <div className="features-head">
           <span className="gold arima">Discover</span> LecturaX Capabilities
-          <p className="features-subhead">Discover LecturaX Capabilities</p>
+          <p className="features-subhead">
+            Explore the Tools That Make Learning Smarter and Teaching Simpler
+          </p>
         </div>
 
         <div className="feature-container">
@@ -115,7 +117,7 @@ const Home = () => {
           <Feature
             title="User-friendly Platform"
             description="Experience a platform designed with you in mind. Our site is crafted to be user-friendly and highly interactive, ensuring that both teachers and students can navigate with ease and engage fully in their educational journey."
-            imgSrc="/assets/ui.jpg"
+            imgSrc="/assets/ui.jpeg"
             direction="reverse"
           />
         </div>
