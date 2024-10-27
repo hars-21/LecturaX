@@ -61,12 +61,14 @@ const Layout = () => {
             <img
               src={logo}
               alt="Logo"
-              style={{ width: "2.5rem", paddingTop: "0.25rem" }}
+              style={{ width: "2.5rem", paddingTop: "6px" }}
             />
           </Link>
         </div>
         <div id="end">
-          <FaBell className="notify" />
+          <Link to="/notifications" style={{ paddingTop: "6px" }}>
+            <FaBell className="notify" />
+          </Link>
           <div className="profile-dropdown" onClick={toggleDropdown}>
             <span>{username}</span>
             <div className={`profile-menu ${dropdown ? "expand" : ""}`}>

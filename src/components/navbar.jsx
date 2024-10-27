@@ -4,13 +4,28 @@ import "../styles/navbar.css";
 import logo from "/assets/logo.png";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [state, setState] = useState("Logged Out");
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    (async () => {
+      await axios
+        .get("/api/")
+        .then((res) => {
+          setState(res.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+    })();
+  }, []);
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -73,10 +88,15 @@ const Navbar = () => {
 
           <div className="nav-options">
             {/* Login Button */}
-            <Link to="/signup" className="animated-btn">
-              Create Account
-            </Link>
-
+            {state === "Logged Out" ? (
+              <Link to="/signup" className="animated-btn">
+                Create Account
+              </Link>
+            ) : (
+              <Link to="/dashboard" className="animated-btn">
+                Dashboard
+              </Link>
+            )}
             {/* Hamburger Menu Button for Mobile */}
             <div className="menu-toggle">
               <button onClick={toggleMenu} className="menu-button">
