@@ -115,7 +115,7 @@ const Home = () => {
           <Feature
             title="User-friendly Platform"
             description="Experience a platform designed with you in mind. Our site is crafted to be user-friendly and highly interactive, ensuring that both teachers and students can navigate with ease and engage fully in their educational journey."
-            imgSrc="/assets/ui.jpg"
+            imgSrc="/assets/ui.jpeg"
             direction="reverse"
           />
         </div>
