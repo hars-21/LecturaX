@@ -66,7 +66,7 @@ const Signup = () => {
   };
 
   return (
-    <section className="auth-section">
+    <section className="auth-section m-container">
       <div className="auth-container">
         <h1 className="auth-title">Create Your Account</h1>
         <div className="form-wrapper">

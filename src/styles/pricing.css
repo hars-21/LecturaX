@@ -1,0 +1,103 @@
+.pricing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Pricing Header */
+.pricing-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.pricing-description {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Pricing Cards */
+.pricing-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pricing-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.plan-price {
+  font-size: 1.25rem;
+  color: #fba202;
+  margin-bottom: 15px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.plan-features li {
+  margin-bottom: 8px;
+}
+
+.try-button {
+  background-color: #fba202;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.try-button:hover {
+  background-color: #e09100;
+}
+
+/* Terms of Use Section */
+.terms-section {
+  max-width: 800px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.terms-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.terms-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
