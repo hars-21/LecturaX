@@ -68,10 +68,26 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div
-            className={`navbar-links ${isOpen ? "active" : ""} ${
+            className={`navbar-links ${
               isVisible ? "nav-visible" : "nav-hidden"
             }`}
           >
+            <Link to="/" className="nav-link underline-animation">
+              Home
+            </Link>
+            <Link to="/pricing" className="nav-link underline-animation">
+              Pricing
+            </Link>
+            <Link to="/about" className="nav-link underline-animation">
+              About Us
+            </Link>
+            <Link to="/support" className="nav-link underline-animation">
+              Support
+            </Link>
+          </div>
+
+          {/* Navigation Links for Mobile */}
+          <div className={`navbar-links-m ${isOpen ? "active" : ""} `}>
             <Link to="/" className="nav-link underline-animation">
               Home
             </Link>
