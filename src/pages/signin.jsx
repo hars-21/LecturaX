@@ -43,7 +43,7 @@ const Signin = () => {
   };
 
   return (
-    <section className="auth-section">
+    <section className="auth-section m-container">
       <div className="auth-container">
         <h1 className="auth-title">SignIn To Your Account</h1>
         <div className="form-wrapper">

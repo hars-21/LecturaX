@@ -103,6 +103,12 @@ a {
   transform-origin: bottom left;
 }
 
+@media (max-width: 768px) {
+  .m-container {
+    padding-top: 6rem !important;
+  }
+}
+
 @media (max-width: 426px) {
   .logo {
     width: 2.5rem;

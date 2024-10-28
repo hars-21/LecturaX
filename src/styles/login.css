@@ -131,10 +131,6 @@
 }
 
 @media (max-width: 768px) {
-  .auth-section {
-    padding-top: 5rem;
-  }
-
   .tabs {
     transform: scale(0.6);
   }

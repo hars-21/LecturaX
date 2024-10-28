@@ -5,7 +5,7 @@ import { FaPhoneAlt, FaEnvelope, FaQuestionCircle } from "react-icons/fa";
 
 const Support = () => {
   return (
-    <div className="support-container">
+    <div className="support-container m-container">
       {/* Contact Section */}
       <section className="contact-section">
         <h1 className="support-title">Support & Contact</h1>

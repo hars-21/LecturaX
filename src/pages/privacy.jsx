@@ -4,7 +4,7 @@ import "../styles/privacy-terms.css";
 
 const Privacy = () => {
   return (
-    <div className="pt-container">
+    <div className="pt-container m-container">
       <h1 className="pt-title">Privacy Policy</h1>
 
       {/* Privacy Policy Section */}

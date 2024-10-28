@@ -5,7 +5,7 @@ import "../styles/about.css";
 
 const About = () => {
   return (
-    <div className="about-container">
+    <div className="about-container m-container">
       {/* About LecturaX Section */}
       <section className="about-section">
         <h1 className="about-title">What is LecturaX?</h1>
