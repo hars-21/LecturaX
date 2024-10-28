@@ -17,7 +17,7 @@ const Navbar = () => {
   useEffect(() => {
     (async () => {
       await axios
-        .get("/api/")
+        .get("https://lecturax-api.onrender.com/api")
         .then((res) => {
           setState(res.data);
         })
