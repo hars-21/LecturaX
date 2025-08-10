@@ -10,8 +10,8 @@ const Support = () => {
       <section className="contact-section">
         <h1 className="support-title">Support & Contact</h1>
         <p className="support-description">
-          We're here to help! If you have any questions, issues, or need
-          assistance, please reach out using one of the methods below.
+          We're here to help! If you have any questions, issues, or need assistance, please reach
+          out using one of the methods below.
         </p>
         <div className="contact-info">
           <div className="contact-item">
@@ -23,10 +23,7 @@ const Support = () => {
           <div className="contact-item">
             <FaEnvelope className="contact-icon" />
             <p>
-              Email:{" "}
-              <a href="mailto:help.lecturax@gmail.com">
-                help.lecturax@gmail.com
-              </a>
+              Email: <a href="mailto:help.lecturax@gmail.com">help.lecturax@gmail.com</a>
             </p>
           </div>
         </div>
@@ -40,20 +37,16 @@ const Support = () => {
           <div>
             <h3 className="faq-question">How do I reset my password?</h3>
             <p className="faq-answer">
-              Go to your profile settings, select "Change Password," and follow
-              the instructions.
+              Go to your profile settings, select "Change Password," and follow the instructions.
             </p>
           </div>
         </div>
         <div className="faq-item">
           <FaQuestionCircle className="faq-icon" />
           <div>
-            <h3 className="faq-question">
-              How can I contact customer support?
-            </h3>
+            <h3 className="faq-question">How can I contact customer support?</h3>
             <p className="faq-answer">
-              You can contact us via phone or email as listed above. Our team is
-              here to assist you.
+              You can contact us via phone or email as listed above. Our team is here to assist you.
             </p>
           </div>
         </div>

@@ -49,7 +49,9 @@ a {
   padding: 0.5rem 1.5rem;
   border-radius: 110px;
   outline: 1px solid hsla(0, 0%, 100%, 0.2);
-  transition: color 0.35s linear, outline 0.35s linear;
+  transition:
+    color 0.35s linear,
+    outline 0.35s linear;
   z-index: 0;
   overflow: clip;
 }

@@ -71,8 +71,8 @@ const Home = () => {
           transition={{ duration: 1.5, delay: 0.5 }}
           className="hero-subhead"
         >
-          LecturaX is a comprehensive educational platform designed to empower
-          educators with advanced tools and insights.
+          LecturaX is a comprehensive educational platform designed to empower educators with
+          advanced tools and insights.
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}

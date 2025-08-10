@@ -34,10 +34,7 @@ module.exports.isOwner = function (req, res, next) {
 };
 
 module.exports.isAuthorized = function (req, res, next) {
-  if (
-    req.session.user.role !== "admin" &&
-    req.session.user.id !== req.params.id
-  ) {
+  if (req.session.user.role !== "admin" && req.session.user.id !== req.params.id) {
     return res.status(403).send("You are not authorized");
   }
   next();

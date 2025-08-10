@@ -18,9 +18,7 @@ const Footer = () => {
       <div className="footer-container arima">
         <div className="footer-section head-footer">
           <img src={logo} alt="Logo" className="logo" />
-          <div className="footer-heading-main">
-            Master Skills with AI-Powered Precision
-          </div>
+          <div className="footer-heading-main">Master Skills with AI-Powered Precision</div>
           <Link to="/signin" className="animated-btn">
             Join Now <FaArrowRightLong />
           </Link>
@@ -88,8 +86,7 @@ const Footer = () => {
             <span className="underline-animation">+91 98980 57571</span>
           </a>
           <a href="mailto:help.lecturax@gmail.com" className="footer-info">
-            <FaEnvelope />{" "}
-            <span className="underline-animation">help.lecturax@gmail.com</span>
+            <FaEnvelope /> <span className="underline-animation">help.lecturax@gmail.com</span>
           </a>
           {/* Social Links */}
           <div className="social-icons">

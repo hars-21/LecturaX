@@ -88,11 +88,7 @@ const Signin = () => {
                 Forgot Password
               </Link>
             </div>
-            <button
-              type="submit"
-              className="btn btn-submit"
-              onClick={handleLogin}
-            >
+            <button type="submit" className="btn btn-submit" onClick={handleLogin}>
               Login
             </button>
           </form>

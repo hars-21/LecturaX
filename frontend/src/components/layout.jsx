@@ -58,11 +58,7 @@ const Layout = () => {
             <span></span>
           </div>
           <Link to="/dashboard">
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ width: "2.5rem", paddingTop: "6px" }}
-            />
+            <img src={logo} alt="Logo" style={{ width: "2.5rem", paddingTop: "6px" }} />
           </Link>
         </div>
         <div id="end">

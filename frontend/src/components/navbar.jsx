@@ -67,11 +67,7 @@ const Navbar = () => {
           </Link>
 
           {/* Navigation Links */}
-          <div
-            className={`navbar-links ${
-              isVisible ? "nav-visible" : "nav-hidden"
-            }`}
-          >
+          <div className={`navbar-links ${isVisible ? "nav-visible" : "nav-hidden"}`}>
             <Link to="/" className="nav-link underline-animation">
               Home
             </Link>

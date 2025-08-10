@@ -62,10 +62,9 @@ const Pricing = () => {
       <section className="terms-section">
         <h2 className="terms-title">Terms of Use</h2>
         <p className="terms-description">
-          By subscribing to our plans, you agree to our terms of service. All
-          subscriptions renew automatically unless canceled before the next
-          billing cycle. Refunds are not provided for partial months. Please
-          contact support for further assistance.
+          By subscribing to our plans, you agree to our terms of service. All subscriptions renew
+          automatically unless canceled before the next billing cycle. Refunds are not provided for
+          partial months. Please contact support for further assistance.
         </p>
       </section>
     </div>
