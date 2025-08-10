@@ -19,6 +19,10 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      match: [
+        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+        "Please enter a valid email",
+      ],
     },
     password: {
       type: String,
@@ -28,7 +32,7 @@ const userSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["admin", "user"],
+      enum: ["admin", "user", "moderator", "teacher", "student"],
       default: "user",
     },
     isActive: {
@@ -37,11 +41,10 @@ const userSchema = new Schema(
     },
     lastLogin: {
       type: Date,
-      default: null,
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Adds createdAt and updatedAt fields
   },
 );
 
@@ -52,27 +55,23 @@ userSchema.pre("save", async function (next) {
 
   try {
     // Hash password with cost of 12
-    const saltRounds = 12;
-    this.password = await bcrypt.hash(this.password, saltRounds);
+    const hashedPassword = await bcrypt.hash(this.password, 12);
+    this.password = hashedPassword;
     next();
   } catch (error) {
     next(error);
   }
 });
 
-// Instance method to compare password
+// Instance method to check password
 userSchema.methods.comparePassword = async function (candidatePassword) {
-  try {
-    return await bcrypt.compare(candidatePassword, this.password);
-  } catch (error) {
-    throw new Error("Password comparison failed");
-  }
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
 // Instance method to update last login
-userSchema.methods.updateLastLogin = async function () {
+userSchema.methods.updateLastLogin = function () {
   this.lastLogin = new Date();
-  return await this.save();
+  return this.save();
 };
 
 export default mongoose.model("User", userSchema);

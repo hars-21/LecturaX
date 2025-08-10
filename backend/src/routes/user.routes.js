@@ -1,6 +1,4 @@
 import express from "express";
-import passport from "passport";
-import userModel from "../models/user.js";
 import wrapAsync from "../utils/wrapAsync.js";
 import userController from "../controllers/user.controller.js";
 
@@ -10,25 +8,15 @@ const router = express.Router();
 router.post("/signup", wrapAsync(userController.signup));
 
 // User login
-router.post(
-  "/signin",
-  passport.authenticate("local", {
-    failureMessage: true,
-  }),
-  userController.signin,
-);
+router.post("/signin", wrapAsync(userController.signin));
 
-// Check authentication status
-router.get("/", (req, res) => {
-  const response = {
-    isAuthenticated: !!req.user,
-    user: req.user || null,
-    message: req.user ? "User is logged in" : "User is not logged in",
-  };
-  res.json(response);
-});
+// Refresh token
+router.post("/refresh", wrapAsync(userController.refreshToken));
 
-// User logout
-router.get("/signout", userController.signout);
+// Get user profile (protected route)
+router.get("/profile", wrapAsync(userController.getProfile));
+
+// Update user profile (protected route)
+router.put("/profile", wrapAsync(userController.updateProfile));
 
 export default router;

@@ -20,7 +20,7 @@ const profileSchema = new Schema(
     role: {
       type: String,
       required: true,
-      enum: ["admin", "user", "moderator"],
+      enum: ["admin", "user"],
       default: "user",
     },
     profilePic: {
@@ -66,7 +66,7 @@ const profileSchema = new Schema(
     },
   },
   {
-    timestamps: true, // Adds createdAt and updatedAt fields
+    timestamps: true,
   },
 );
 

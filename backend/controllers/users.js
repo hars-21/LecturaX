@@ -1,7 +1,6 @@
 import Profile from "../models/profile.js";
 import User from "../models/user.js";
-import { generateTokens, verifyRefreshToken } from "../utils/jwt.js";
-import ExpressError from "../utils/ExpressError.js";
+import { generateTokens, verifyRefreshToken } from "../src/utils/jwt.js";
 
 /**
  * User signup controller
@@ -235,63 +234,5 @@ export const getProfile = async (req, res, next) => {
   }
 };
 
-/**
- * Update user profile
- */
-export const updateProfile = async (req, res, next) => {
-  try {
-    const { username } = req.body;
-    const userId = req.user.id;
-
-    // Find and update user
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { username },
-      { new: true, runValidators: true },
-    ).select("-password");
-
-    if (!updatedUser) {
-      return res.status(404).json({
-        success: false,
-        message: "User not found",
-      });
-    }
-
-    res.json({
-      success: true,
-      message: "Profile updated successfully",
-      user: {
-        id: updatedUser._id,
-        username: updatedUser.username,
-        email: updatedUser.email,
-        role: updatedUser.role,
-        updatedAt: updatedUser.updatedAt,
-      },
-    });
-  } catch (err) {
-    console.error("Update profile error:", err);
-
-    if (err.name === "ValidationError") {
-      const errors = Object.values(err.errors).map((e) => e.message);
-      return res.status(400).json({
-        success: false,
-        message: "Validation failed",
-        errors,
-      });
-    }
-
-    res.status(500).json({
-      success: false,
-      message: "Failed to update profile",
-    });
-  }
-};
-
 // Default export for compatibility
-export default {
-  signup,
-  signin,
-  refreshToken,
-  getProfile,
-  updateProfile,
-};
+export default { signup, signin, refreshToken, getProfile };

@@ -1,10 +1,10 @@
 import express from "express";
-import { isLoggedIn } from "../middleware";
+import { authenticated } from "../middleware/index.js";
 
 const router = express.Router();
 
 // Get dashboard data for authenticated user
-router.get("/", isLoggedIn, (req, res) => {
+router.get("/", authenticated, (req, res) => {
   const loggedUser = req.user;
   res.json({
     success: true,
