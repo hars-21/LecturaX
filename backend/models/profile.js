@@ -1,32 +1,73 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
 
-const profileSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: true,
-  },
-  profilePic: {
-    type: String,
-  },
-  firstname: String,
-  lastname: String,
-  address: String,
-  phone: Number,
-  dob: Date,
-  education: String,
-  institute: String,
-  experience: String,
-  designation: String,
-  company: String,
-});
+const { Schema } = mongoose;
 
-module.exports = mongoose.model("profile", profileSchema);
+const profileSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: ["admin", "user", "moderator"],
+      default: "user",
+    },
+    profilePic: {
+      type: String,
+      default: "",
+    },
+    firstname: {
+      type: String,
+      trim: true,
+    },
+    lastname: {
+      type: String,
+      trim: true,
+    },
+    address: {
+      type: String,
+      trim: true,
+    },
+    phone: {
+      type: String,
+      trim: true,
+    },
+    dob: Date,
+    education: {
+      type: String,
+      trim: true,
+    },
+    institute: {
+      type: String,
+      trim: true,
+    },
+    experience: {
+      type: String,
+      trim: true,
+    },
+    designation: {
+      type: String,
+      trim: true,
+    },
+    company: {
+      type: String,
+      trim: true,
+    },
+  },
+  {
+    timestamps: true, // Adds createdAt and updatedAt fields
+  },
+);
+
+export default mongoose.model("Profile", profileSchema);

@@ -1,86 +1,104 @@
-if (process.env.NODE_ENV != "production") {
-  require("dotenv").config();
-}
+import dotenv from "dotenv";
 
-const express = require("express");
+// Load environment variables first
+dotenv.config();
+
+import express from "express";
+import cors from "cors";
+import session from "express-session";
+import passport from "passport";
+import { Strategy as LocalStrategy } from "passport-local";
+import MongoStore from "connect-mongo";
+
+import { config } from "./config/index.js";
+import User from "./models/user.js";
+import ExpressError from "./utils/ExpressError.js";
+import userRouter from "./routes/userRouter.js";
+import dashboardRouter from "./routes/dashboardRouter.js";
+
 const app = express();
-const mongoose = require("mongoose");
-const port = process.env.PORT || 3000;
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const User = require("./models/user.js");
-const MongoStore = require("connect-mongo");
-const ExpressError = require("./utils/ExpressError.js");
-const session = require("express-session");
-const passport = require("passport");
-const LocalStrategy = require("passport-local");
 
-const userRouter = require("./routes/userRouter.js");
-const dashboardRouter = require("./routes/dashboardRouter.js");
+// Middleware
+app.use(cors(config.cors));
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(bodyParser.json());
-
-const dbUrl = process.env.ATLASDB_URL;
-
-main()
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => console.log(err));
-
-async function main() {
-  await mongoose.connect(dbUrl);
-}
+// Session configuration
+const mongoUrl = process.env.DB_URL || "mongodb://localhost:27017/lecturax";
 
 const store = MongoStore.create({
-  mongoUrl: dbUrl,
+  mongoUrl: mongoUrl,
   crypto: {
-    secret: process.env.SECRET,
+    secret: process.env.SECRET || "fallback-secret-change-in-production",
   },
-  touchAfter: 24 * 3600,
+  touchAfter: 24 * 3600, // 24 hours
 });
 
-store.on("error", () => {
-  console.log("ERROR in MONGO SESSION STORE", err);
+store.on("error", (err) => {
+  console.error("ERROR in MONGO SESSION STORE:", err);
 });
 
 const sessionOptions = {
   store,
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || "fallback-secret-change-in-production",
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
+    secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
+    expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7), // 7 days
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
   },
 };
 
 app.use(session(sessionOptions));
 
+// Passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
 
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Routers
-app.use("/api", userRouter);
-app.use("/api/dashboard", dashboardRouter);
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || "development",
+  });
+});
 
+// API Routes
+app.use(config.api.prefix, userRouter);
+app.use(`${config.api.prefix}/dashboard`, dashboardRouter);
+
+// 404 handler for unknown routes
 app.all("*", (req, res, next) => {
-  next(new ExpressError(404, "Page Not Found"));
+  next(new ExpressError(404, `Route ${req.originalUrl} not found`));
 });
 
+// Global error handler
 app.use((err, req, res, next) => {
-  let { statusCode = 500, message = "Oh NO! Something Went Wrong!!!" } = err;
-  res.status(statusCode).send({ message });
-  // res.status(statusCode).send(message);
+  const { statusCode = 500, message = "Internal Server Error" } = err;
+
+  // Log error details in development
+  if (process.env.NODE_ENV !== "production") {
+    console.error("Error Details:", {
+      message: err.message,
+      stack: err.stack,
+      statusCode,
+      url: req.originalUrl,
+      method: req.method,
+    });
+  }
+
+  res.status(statusCode).json({
+    success: false,
+    message,
+    ...(process.env.NODE_ENV !== "production" && { stack: err.stack }),
+  });
 });
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
+export default app;

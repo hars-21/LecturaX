@@ -1,10 +1,21 @@
-const express = require("express");
-const { isLoggedIn } = require("../middleware");
+import express from "express";
+import { isLoggedIn } from "../middleware.js";
+
 const router = express.Router();
 
+// Get dashboard data for authenticated user
 router.get("/", isLoggedIn, (req, res) => {
-  let loggedUser = req.user;
-  res.send(loggedUser);
+  const loggedUser = req.user;
+  res.json({
+    success: true,
+    user: {
+      id: loggedUser._id,
+      username: loggedUser.username,
+      email: loggedUser.email,
+      role: loggedUser.role,
+    },
+    message: "Dashboard data retrieved successfully",
+  });
 });
 
-module.exports = router;
+export default router;

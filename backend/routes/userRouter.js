@@ -1,25 +1,34 @@
-const express = require("express");
+import express from "express";
+import passport from "passport";
+import userModel from "../models/user.js";
+import wrapAsync from "../utils/wrapAsync.js";
+import userController from "../controllers/users.js";
+
 const router = express.Router();
-const userModel = require("../models/user.js");
-const wrapAsync = require("../utils/wrapAsync.js");
-const passport = require("passport");
 
-const userController = require("../controllers/users.js");
-
+// User registration
 router.post("/signup", wrapAsync(userController.signup));
 
+// User login
 router.post(
   "/signin",
   passport.authenticate("local", {
     failureMessage: true,
   }),
-  userController.signin
+  userController.signin,
 );
 
+// Check authentication status
 router.get("/", (req, res) => {
-  req.user ? res.send("Logged In") : res.send("Logged Out");
+  const response = {
+    isAuthenticated: !!req.user,
+    user: req.user || null,
+    message: req.user ? "User is logged in" : "User is not logged in",
+  };
+  res.json(response);
 });
 
+// User logout
 router.get("/signout", userController.signout);
 
-module.exports = router;
+export default router;
