@@ -10,11 +10,11 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import MongoStore from "connect-mongo";
 
-import { config } from "./config/index.js";
-import User from "./models/user.js";
-import ExpressError from "./utils/ExpressError.js";
-import userRouter from "./routes/userRouter.js";
-import dashboardRouter from "./routes/dashboardRouter.js";
+import { config } from "./src/config/index.js";
+import User from "./src/models/user.js";
+import ExpressError from "./src/utils/ExpressError.js";
+import userRouter from "./src/routes/user.routes.js";
+import dashboardRouter from "./src/routes/dashboard.routes.js";
 
 const app = express();
 

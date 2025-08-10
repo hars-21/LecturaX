@@ -1,5 +1,5 @@
 import express from "express";
-import { isLoggedIn } from "../middleware.js";
+import { isLoggedIn } from "../middleware";
 
 const router = express.Router();
 

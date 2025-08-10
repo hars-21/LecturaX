@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
-import { config } from "./config/index.js";
-import { connectMongo } from "./utils/mongoClient.js";
+import { config } from "./src/config/index.js";
+import { connectMongo } from "./src/utils/mongoClient.js";
 import app from "./server.js";
 
 // Load environment variables first

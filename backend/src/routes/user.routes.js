@@ -2,7 +2,7 @@ import express from "express";
 import passport from "passport";
 import userModel from "../models/user.js";
 import wrapAsync from "../utils/wrapAsync.js";
-import userController from "../controllers/users.js";
+import userController from "../controllers/user.controller.js";
 
 const router = express.Router();
 
