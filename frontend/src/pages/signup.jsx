@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/login.css";
-import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash, FaUser, FaLock, FaEnvelope } from "react-icons/fa";
@@ -71,7 +70,7 @@ const Signup = () => {
     const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
     if (!usernameRegex.test(form.username)) {
       toast.error(
-        "Username must be 3-20 characters and contain only letters, numbers, and underscores",
+        "Username must be 3-20 characters and contain only letters, numbers, and underscores"
       );
       return;
     }
@@ -81,12 +80,11 @@ const Signup = () => {
         username: form.username,
         email: form.email,
         password: form.password,
-        id: uuidv4(),
+        role: "user",
       };
 
       await signup(userData);
       navigate("/dashboard", { replace: true });
-      toast.success("Account created successfully!");
     } catch (error) {
       // Error is handled by the auth context
       console.error("Signup error:", error);
@@ -106,9 +104,7 @@ const Signup = () => {
       <div className="auth-container">
         <div className="auth-header">
           <h1 className="auth-title">Create Your Account</h1>
-          <p className="auth-subtitle">
-            Join LecturaX and start your learning journey
-          </p>
+          <p className="auth-subtitle">Join LecturaX and start your learning journey</p>
         </div>
 
         <div className="form-wrapper">
@@ -195,11 +191,7 @@ const Signup = () => {
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-submit"
-              disabled={isLoading}
-            >
+            <button type="submit" className="btn btn-submit" disabled={isLoading}>
               {isLoading ? (
                 <span className="loading-spinner">Creating Account...</span>
               ) : (

@@ -1,14 +1,14 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomeLayout from "./components/layouts/home";
+import DashboardLayout from "./components/layouts/dashboard";
 import Signin from "./pages/signin";
 import Signup from "./pages/signup";
 import Reset from "./pages/reset";
 import Home from "./pages/home";
 import NoPage from "./pages/nopage";
-import Layout from "./components/layout";
 import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
-import Canvas from "./components/canvas";
 import About from "./pages/about";
 import Support from "./pages/support";
 import Pricing from "./pages/pricing";
@@ -27,7 +27,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Canvas />}>
+          <Route path="/" element={<HomeLayout />}>
             <Route
               index
               element={
@@ -106,7 +106,7 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Layout />
+                <DashboardLayout />
               </ProtectedRoute>
             }
           >

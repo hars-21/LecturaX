@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./navbar";
-import Footer from "./footer";
+import Navbar from "../navbar";
+import Footer from "../footer";
 
-const Canvas = () => {
+const HomeLayout = () => {
   return (
     <>
       <Navbar />
@@ -14,4 +14,4 @@ const Canvas = () => {
   );
 };
 
-export default Canvas;
+export default HomeLayout;
