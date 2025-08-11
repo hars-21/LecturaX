@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import "../styles/login.css";
 import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash, FaUser, FaLock, FaEnvelope } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 
 const Signup = () => {
-  const redirect = useNavigate();
+  const navigate = useNavigate();
+  const { signup, isLoading } = useAuth();
+
   const [form, setForm] = useState({
     username: "",
     email: "",
     password: "",
-    c_password: "",
+    confirmPassword: "",
   });
-  const [role, setRole] = useState("student");
 
   const [pswdVisible, setPswdVisible] = useState(false);
   const [cPswdVisible, setCPswdVisible] = useState(false);
@@ -35,151 +36,189 @@ const Signup = () => {
     });
   };
 
-  const handleRoleChange = (e) => {
-    setRole(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate form
+    if (
+      !form.username.trim() ||
+      !form.email.trim() ||
+      !form.password.trim() ||
+      !form.confirmPassword.trim()
+    ) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    if (form.password !== form.confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    if (form.password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    // Validate username (alphanumeric and underscore only)
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    if (!usernameRegex.test(form.username)) {
+      toast.error(
+        "Username must be 3-20 characters and contain only letters, numbers, and underscores",
+      );
+      return;
+    }
+
+    try {
+      const userData = {
+        username: form.username,
+        email: form.email,
+        password: form.password,
+        id: uuidv4(),
+      };
+
+      await signup(userData);
+      navigate("/dashboard", { replace: true });
+      toast.success("Account created successfully!");
+    } catch (error) {
+      // Error is handled by the auth context
+      console.error("Signup error:", error);
+    }
+
+    // Reset form
     setForm({
       username: "",
       email: "",
       password: "",
-      c_password: "",
+      confirmPassword: "",
     });
-
-    if (form.password !== form.c_password) {
-      alert("Passwords do not match");
-      return;
-    }
-    try {
-      let res = await axios.post("/api/signup", {
-        ...form,
-        role,
-        id: uuidv4(),
-      });
-      toast.success(res.data);
-      redirect("/dashboard", { replace: true });
-    } catch (err) {
-      toast.error(err.response.data);
-    }
   };
 
   return (
-    <section className="auth-section m-container">
+    <section className="auth-section">
       <div className="auth-container">
-        <h1 className="auth-title">Create Your Account</h1>
+        <div className="auth-header">
+          <h1 className="auth-title">Create Your Account</h1>
+          <p className="auth-subtitle">
+            Join LecturaX and start your learning journey
+          </p>
+        </div>
+
         <div className="form-wrapper">
-          <form method="post" action="/signup">
-            <div className="role-container">
-              <div className="tabs">
-                <input
-                  type="radio"
-                  id="student"
-                  name="tabs"
-                  value={"student"}
-                  checked={role === "student"}
-                  onChange={handleRoleChange}
-                />
-                <label className="tab" htmlFor="student">
-                  Student
-                </label>
-                <input
-                  type="radio"
-                  id="teacher"
-                  name="tabs"
-                  value={"teacher"}
-                  checked={role === "teacher"}
-                  onChange={handleRoleChange}
-                />
-                <label className="tab" htmlFor="teacher">
-                  Teacher
-                </label>
-                <span className="glider"></span>
-              </div>
-            </div>
+          <form onSubmit={handleSubmit} className="auth-form">
             <div className="form-group">
               <label className="form-label" htmlFor="username">
                 Username
               </label>
-              <FaUser className="input-icon" />
-              <input
-                type="name"
-                className="form-control"
-                id="username"
-                placeholder="username"
-                name="username"
-                value={form.username}
-                required={true}
-                onChange={handleChange}
-              />
+              <div className="input-wrapper">
+                <FaUser className="input-icon" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  placeholder="Enter your username"
+                  name="username"
+                  value={form.username}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
+
             <div className="form-group">
               <label className="form-label" htmlFor="email">
-                Email ID
+                Email Address
               </label>
-              <FaEnvelope className="input-icon" />
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                placeholder="jane@doe.com"
-                name="email"
-                value={form.email}
-                required={true}
-                onChange={handleChange}
-              />
+              <div className="input-wrapper">
+                <FaEnvelope className="input-icon" />
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  placeholder="Enter your email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
+
             <div className="form-group">
               <label className="form-label" htmlFor="password">
                 Password
               </label>
-              <FaLock className="input-icon" />
-              <span onClick={togglePassword} className="pswd-toggle">
-                {pswdVisible ? <FaEye /> : <FaEyeSlash />}
-              </span>
-              <input
-                type={pswdVisible ? "text" : "password"}
-                className="form-control"
-                id="password"
-                placeholder="Password"
-                name="password"
-                value={form.password}
-                required={true}
-                onChange={handleChange}
-              />
+              <div className="input-wrapper">
+                <FaLock className="input-icon" />
+                <span onClick={togglePassword} className="pswd-toggle">
+                  {pswdVisible ? <FaEye /> : <FaEyeSlash />}
+                </span>
+                <input
+                  type={pswdVisible ? "text" : "password"}
+                  className="form-control"
+                  id="password"
+                  placeholder="Create a password"
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
+
             <div className="form-group">
-              <label className="form-label" htmlFor="c_password">
+              <label className="form-label" htmlFor="confirmPassword">
                 Confirm Password
               </label>
-              <FaLock className="input-icon" />
-              <span onClick={toggleConfirmPassword} className="pswd-toggle">
-                {cPswdVisible ? <FaEye /> : <FaEyeSlash />}
-              </span>
-              <input
-                type={cPswdVisible ? "text" : "password"}
-                className="form-control"
-                id="password_confirm"
-                placeholder="Re-enter your password"
-                name="c_password"
-                value={form.c_password}
-                required={true}
-                onChange={handleChange}
-              />
+              <div className="input-wrapper">
+                <FaLock className="input-icon" />
+                <span onClick={toggleConfirmPassword} className="pswd-toggle">
+                  {cPswdVisible ? <FaEye /> : <FaEyeSlash />}
+                </span>
+                <input
+                  type={cPswdVisible ? "text" : "password"}
+                  className="form-control"
+                  id="confirmPassword"
+                  placeholder="Confirm your password"
+                  name="confirmPassword"
+                  value={form.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
-            <button type="submit" className="btn btn-submit" onClick={handleSubmit}>
-              Create Account
+
+            <button
+              type="submit"
+              className="btn btn-submit"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="loading-spinner">Creating Account...</span>
+              ) : (
+                "Create Account"
+              )}
             </button>
           </form>
-          <hr />
-          <div className="additional-links">
-            <div className="register-link">
+
+          <div className="auth-divider">
+            <span>or</span>
+          </div>
+
+          <div className="auth-footer">
+            <p className="auth-redirect">
               Already have an account?{" "}
-              <Link to="/signin" className="redirect-links">
-                <b>SignIn</b>
+              <Link to="/signin" className="auth-link">
+                Sign In
               </Link>
-            </div>
+            </p>
           </div>
         </div>
       </div>

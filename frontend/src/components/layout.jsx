@@ -21,20 +21,20 @@ const Layout = () => {
     setDropdown(!dropdown);
   };
 
-  useEffect(() => {
-    (async () => {
-      await axios
-        .get("/api/dashboard/")
-        .then((res) => {
-          setUsername(res.data.username);
-          setRole(res.data.role);
-        })
-        .catch((err) => {
-          toast.error(err.response.data);
-          redirect("/signin", { replace: true });
-        });
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     await axios
+  //       .get("/api/dashboard/")
+  //       .then((res) => {
+  //         setUsername(res.data.username);
+  //         setRole(res.data.role);
+  //       })
+  //       .catch((err) => {
+  //         toast.error(err.response.data);
+  //         redirect("/signin", { replace: true });
+  //       });
+  //   })();
+  // }, []);
 
   const handleSignout = async () => {
     await axios

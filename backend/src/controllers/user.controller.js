@@ -1,7 +1,6 @@
 import Profile from "../models/profile.js";
 import User from "../models/user.js";
 import { generateTokens, verifyRefreshToken } from "../utils/jwt.js";
-import ExpressError from "../utils/ExpressError.js";
 
 /**
  * User signup controller
@@ -14,7 +13,7 @@ export const signup = async (req, res, next) => {
     if (!username || !email || !password || !role) {
       return res.status(400).json({
         success: false,
-        message: "All fields (username, email, password, role) are required",
+        message: "All fields are required",
       });
     }
 
@@ -90,23 +89,26 @@ export const signup = async (req, res, next) => {
  */
 export const signin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { usernameOrEmail, password } = req.body;
 
-    // Validate required fields
-    if (!email || !password) {
+    // Validate required fields - accept either email or username
+    const loginField = usernameOrEmail;
+    if (!loginField || !password) {
       return res.status(400).json({
         success: false,
-        message: "Email and password are required",
+        message: "Email/username and password are required",
       });
     }
 
-    // Find user by email
-    const user = await User.findOne({ email });
+    // Find user by email or username
+    const user = await User.findOne({
+      $or: [{ email: loginField }, { username: loginField }],
+    });
 
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: "Invalid email or password",
+        message: "Invalid credentials",
       });
     }
 
@@ -124,7 +126,7 @@ export const signin = async (req, res, next) => {
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
-        message: "Invalid email or password",
+        message: "Invalid credentials",
       });
     }
 
@@ -247,7 +249,7 @@ export const updateProfile = async (req, res, next) => {
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { username },
-      { new: true, runValidators: true },
+      { new: true, runValidators: true }
     ).select("-password");
 
     if (!updatedUser) {

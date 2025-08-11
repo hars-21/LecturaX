@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../styles/login.css";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash, FaUser, FaLock } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 
 const Signin = () => {
-  const redirect = useNavigate();
-  const [loginForm, setLoginForm] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { signin } = useAuth();
+
+  const [loginForm, setLoginForm] = useState({
+    usernameOrEmail: "",
+    password: "",
+  });
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -24,82 +30,103 @@ const Signin = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!loginForm.usernameOrEmail.trim() || !loginForm.password.trim()) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    try {
+      // Pass the usernameOrEmail as username to the login function
+      await signin(loginForm);
+
+      // Get the intended destination or default to dashboard
+      const from = location.state?.from?.pathname || "/dashboard";
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+
+    // Reset form
     setLoginForm({
-      username: "",
+      usernameOrEmail: "",
       password: "",
     });
-
-    await axios
-      .post("/api/signin", {
-        ...loginForm,
-      })
-      .then((res) => {
-        toast.success(res.data);
-        redirect("/dashboard", { replace: true });
-      })
-      .catch((err) => {
-        toast.error(err.response.data);
-      });
   };
 
   return (
-    <section className="auth-section m-container">
+    <section className="auth-section">
       <div className="auth-container">
-        <h1 className="auth-title">SignIn To Your Account</h1>
+        <div className="auth-header">
+          <h1 className="auth-title">Welcome Back</h1>
+          <p className="auth-subtitle">Sign in to continue your learning journey</p>
+        </div>
+
         <div className="form-wrapper">
-          <form method="post" action="/signin">
+          <form onSubmit={handleLogin} className="auth-form">
             <div className="form-group">
-              <label className="form-label" htmlFor="username">
-                Username
+              <label className="form-label" htmlFor="usernameOrEmail">
+                Username or Email
               </label>
-              <FaUser className="input-icon" />
-              <input
-                type="name"
-                className="form-control"
-                id="username"
-                placeholder="username"
-                name="username"
-                value={loginForm.username}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-wrapper">
+                <FaUser className="input-icon" />
+                <input
+                  type="text"
+                  className="form-control"
+                  id="usernameOrEmail"
+                  placeholder="Enter username or email"
+                  name="usernameOrEmail"
+                  value={loginForm.usernameOrEmail}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
+
             <div className="form-group">
               <label className="form-label" htmlFor="password">
                 Password
               </label>
-              <FaLock className="input-icon" />
-              <span onClick={toggleVisibility} className="pswd-toggle">
-                {passwordVisible ? <FaEye /> : <FaEyeSlash />}
-              </span>
-              <input
-                type={passwordVisible ? "text" : "password"}
-                className="form-control"
-                id="password"
-                placeholder="••••••"
-                name="password"
-                value={loginForm.password}
-                onChange={handleChange}
-                required
-              />
+              <div className="input-wrapper">
+                <FaLock className="input-icon" />
+                <span onClick={toggleVisibility} className="pswd-toggle">
+                  {passwordVisible ? <FaEye /> : <FaEyeSlash />}
+                </span>
+                <input
+                  type={passwordVisible ? "text" : "password"}
+                  className="form-control"
+                  id="password"
+                  placeholder="Enter your password"
+                  name="password"
+                  value={loginForm.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
-            <div className="forgot-password-link">
-              <Link to="/forgot-password" className="redirect-links">
-                Forgot Password
+
+            <div className="forgot-password-wrapper">
+              <Link to="/reset" className="forgot-password-link">
+                Forgot Password?
               </Link>
             </div>
-            <button type="submit" className="btn btn-submit" onClick={handleLogin}>
-              Login
+
+            <button type="submit" className="btn btn-submit">
+              {false ? <span className="loading-spinner">Signing In...</span> : "Sign In"}
             </button>
           </form>
-          <hr />
-          <div className="additional-links">
-            <div className="register-link">
+
+          <div className="auth-divider">
+            <span>or</span>
+          </div>
+
+          <div className="auth-footer">
+            <p className="auth-redirect">
               Don't have an account?{" "}
-              <Link to="/signup" className="redirect-links">
-                <b>SignUp</b>
+              <Link to="/signup" className="auth-link">
+                Create Account
               </Link>
-            </div>
+            </p>
           </div>
         </div>
       </div>
