@@ -13,6 +13,12 @@ import About from "./pages/about";
 import Support from "./pages/support";
 import Privacy from "./pages/privacy";
 import Terms from "./pages/terms";
+import Lecture from "./pages/lecture";
+import Calculator from "./pages/calculator";
+import Heckler from "./pages/heckler";
+import Mindmaps from "./pages/mindmaps";
+import Resource from "./pages/resource";
+import Notes from "./pages/notes";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -103,6 +109,13 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="lecture" element={<Lecture />} />
+            <Route path="notes" element={<Notes />} />
+            <Route path="mindmaps" element={<Mindmaps />} />
+            <Route path="resource" element={<Resource />} />
+            <Route path="heckler" element={<Heckler />} />
+            <Route path="calculator" element={<Calculator />} />
+            <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
         <ToastContainer

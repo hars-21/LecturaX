@@ -32,38 +32,38 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     },
     {
       icon: <FaChartLine />,
-      label: "My Analytics",
-      path: "/dashboard/analytics",
+      label: "Chaos Lecture",
+      path: "/dashboard/lecture",
       color: "#f7b733",
     },
     {
       icon: <FaBookOpen />,
-      label: "Courses",
-      path: "/dashboard/courses",
+      label: "Unstable Notes",
+      path: "/dashboard/notes",
       color: "#f05053",
     },
     {
       icon: <FaVideo />,
-      label: "Live Classes",
-      path: "/dashboard/classes",
+      label: "Mind Maps",
+      path: "/dashboard/mindmaps",
       color: "#e53935",
     },
     {
       icon: <FaQuestionCircle />,
-      label: "Doubt Solving",
-      path: "/dashboard/doubt",
+      label: "Resource Hub",
+      path: "/dashboard/resource",
       color: "#4caf50",
     },
     {
       icon: <FaClipboardList />,
-      label: "Tests & Results",
-      path: "/dashboard/test",
+      label: "AI Heckler",
+      path: "/dashboard/heckler",
       color: "#9c27b0",
     },
     {
       icon: <FaCalendarAlt />,
-      label: "Time-Table",
-      path: "/dashboard/timetable",
+      label: "Sentient Calculator",
+      path: "/dashboard/calculator",
       color: "#ff9800",
     },
     {
@@ -102,7 +102,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </div>
                 <div className="logo-text">
                   <h3>LecturaX</h3>
-                  <p>Learning Hub</p>
+                  <p>The Chaos Lab</p>
                 </div>
               </>
             )}
