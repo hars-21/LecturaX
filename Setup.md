@@ -13,9 +13,12 @@
 1. **Clone and install dependencies:**
 
    ```bash
-   cd /home/harshil/Desktop/Projects/LecturaX
+   git clone https://github.com/[your-username]/LecturaX.git
+   cd LecturaX
    pnpm install
    ```
+
+   Replace `your-username` with your actual github username.
 
 2. **Set up environment variables:**
 
@@ -40,14 +43,14 @@
    cd frontend
    pnpm dev
    ```
-   The frontend will run on http://localhost:3001
+   The frontend will run on http://localhost:3000
 
 ### API Endpoints
 
 - **Health Check:** `GET /health`
 - **User Registration:** `POST /api/signup`
 - **User Login:** `POST /api/signin`
-- **User Logout:** `GET /api/signout`
+- **User Profile:** `GET /api/profile` (requires authentication)
 - **Dashboard:** `GET /api/dashboard` (requires authentication)
 
 ### Environment Variables (.env)
@@ -56,15 +59,18 @@
 # Database Configuration
 DB_URL=mongodb://localhost:27017/lecturax
 
-# Session Secret (Change this in production!)
-SECRET=your-super-secret-session-key-change-in-production
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+JWT_EXPIRES_IN=7d
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-change-in-production
+JWT_REFRESH_EXPIRES_IN=30d
 
 # Server Configuration
 PORT=5000
 NODE_ENV=development
 
 # CORS Configuration
-CORS_ORIGIN=http://localhost:3001
+CORS_ORIGIN=http://localhost:5000
 ```
 
 ### Project Structure
@@ -97,9 +103,8 @@ CORS_ORIGIN=http://localhost:3001
 - Error-free Express 4.x setup
 - MongoDB connection with proper error handling
 - Session management with MongoDB store
-- Passport.js authentication
+- JWT authentication
 - Comprehensive error handling
-- Graceful shutdown handling
 - Health check endpoint
 
 ✅ **Frontend Setup:**
@@ -111,15 +116,7 @@ CORS_ORIGIN=http://localhost:3001
 
 ### Troubleshooting
 
-1. **Port already in use:** The frontend will automatically try another port (3001, 3002, etc.)
+1. **Port already in use:** The frontend will automatically try another port
 2. **MongoDB connection errors:** Ensure MongoDB is running and the connection string is correct
 3. **CORS errors:** Check that frontend URL is included in backend CORS configuration
 4. **Module import errors:** Ensure all files use ES6 import/export syntax
-
-### Next Steps
-
-- Set up database migrations
-- Add input validation
-- Implement JWT tokens (optional)
-- Add error logging
-- Set up production deployment
