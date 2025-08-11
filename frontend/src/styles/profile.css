@@ -115,10 +115,9 @@
   font-size: 0.9rem;
 }
 
-.profile-role {
+.profile-email {
   font-size: 0.75rem;
   color: #888;
-  text-transform: capitalize;
 }
 
 .profile-menu {

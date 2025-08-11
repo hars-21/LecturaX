@@ -11,7 +11,6 @@ import Dashboard from "./pages/dashboard";
 import Profile from "./pages/profile";
 import About from "./pages/about";
 import Support from "./pages/support";
-import Pricing from "./pages/pricing";
 import Privacy from "./pages/privacy";
 import Terms from "./pages/terms";
 
@@ -49,14 +48,6 @@ function App() {
               element={
                 <PublicRoute>
                   <Support />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/pricing"
-              element={
-                <PublicRoute>
-                  <Pricing />
                 </PublicRoute>
               }
             />

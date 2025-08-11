@@ -1,6 +1,7 @@
 import express from "express";
 import wrapAsync from "../utils/wrapAsync.js";
 import userController from "../controllers/user.controller.js";
+import { authenticated } from "../middleware/index.js";
 
 const router = express.Router();
 
@@ -14,9 +15,9 @@ router.post("/signin", wrapAsync(userController.signin));
 router.post("/refresh", wrapAsync(userController.refreshToken));
 
 // Get user profile (protected route)
-router.get("/profile", wrapAsync(userController.getProfile));
+router.get("/profile", authenticated, wrapAsync(userController.getProfile));
 
 // Update user profile (protected route)
-router.put("/profile", wrapAsync(userController.updateProfile));
+router.put("/profile", authenticated, wrapAsync(userController.updateProfile));
 
 export default router;
