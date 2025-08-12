@@ -222,6 +222,12 @@ export const getProfile = async (req, res, next) => {
         username: user.username,
         email: user.email,
         role: user.role,
+        phone: user.phone,
+        bio: user.bio,
+        location: user.location,
+        website: user.website,
+        profilePicture: user.profilePicture,
+        isVerified: user.isVerified,
         isActive: user.isActive,
         lastLogin: user.lastLogin,
         createdAt: user.createdAt,
@@ -242,15 +248,14 @@ export const getProfile = async (req, res, next) => {
  */
 export const updateProfile = async (req, res, next) => {
   try {
-    const { username } = req.body;
+    const changes = req.body;
     const userId = req.user.id;
 
     // Find and update user
-    const updatedUser = await User.findByIdAndUpdate(
-      userId,
-      { username },
-      { new: true, runValidators: true }
-    ).select("-password");
+    const updatedUser = await User.findByIdAndUpdate(userId, changes, {
+      new: true,
+      runValidators: true,
+    }).select("-password");
 
     if (!updatedUser) {
       return res.status(404).json({
@@ -266,7 +271,10 @@ export const updateProfile = async (req, res, next) => {
         id: updatedUser._id,
         username: updatedUser.username,
         email: updatedUser.email,
-        role: updatedUser.role,
+        phone: updatedUser.phone,
+        bio: updatedUser.bio,
+        location: updatedUser.location,
+        website: updatedUser.website,
         updatedAt: updatedUser.updatedAt,
       },
     });

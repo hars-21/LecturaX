@@ -31,6 +31,35 @@ const userSchema = new Schema(
       enum: ["admin", "user"],
       default: "user",
     },
+    phone: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    bio: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    location: {
+      type: String,
+
+      trim: true,
+      default: "",
+    },
+    website: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    profilePicture: {
+      type: String,
+      default: "",
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
     isActive: {
       type: Boolean,
       default: true,
@@ -42,7 +71,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 // Hash password before saving
