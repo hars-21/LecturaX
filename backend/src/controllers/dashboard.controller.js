@@ -1,4 +1,5 @@
 import { askGemini } from "../tools/gemini.js";
+import History from "../models/history.js";
 
 export const createSummary = async (req, res) => {
   const { text } = req.body;
@@ -12,6 +13,12 @@ export const createSummary = async (req, res) => {
 
   try {
     const summary = await askGemini(instruction, content, temperature);
+    await History.create({
+      userId: req.user._id,
+      tool: "summarizer",
+      details: summary,
+      input: text,
+    });
     res.json({ success: true, summary });
   } catch (error) {
     console.error("Error occurred while summarizing text:", error);
@@ -31,6 +38,12 @@ export const generateIdeas = async (req, res) => {
 
   try {
     const ideas = await askGemini(instruction, content, temperature);
+    await History.create({
+      userId: req.user._id,
+      tool: "generator",
+      details: ideas,
+      input: topic,
+    });
     res.json({ success: true, ideas });
   } catch (error) {
     console.error("Error occurred while generating ideas:", error);
@@ -51,6 +64,12 @@ export const extractKeywords = async (req, res) => {
 
   try {
     const keywords = await askGemini(instruction, content, temperature);
+    await History.create({
+      userId: req.user._id,
+      tool: "extractor",
+      details: keywords,
+      input: text,
+    });
     res.json({ success: true, keywords });
   } catch (error) {
     console.error("Error occurred while extracting keywords:", error);
