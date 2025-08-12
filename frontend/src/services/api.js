@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:5000/api",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
@@ -39,7 +39,7 @@ api.interceptors.response.use(
       try {
         const refreshToken = localStorage.getItem("refreshToken");
         if (refreshToken) {
-          const response = await api.post("/api/users/refresh", {
+          const response = await api.post("/refresh", {
             refreshToken,
           });
 
@@ -64,7 +64,7 @@ api.interceptors.response.use(
     const errorMessage = error.response?.data?.message || error.message || "An error occurred";
 
     // Don't show toast for auth check requests
-    if (!originalRequest.url?.includes("/api/users/profile")) {
+    if (!originalRequest.url?.includes("/profile")) {
       toast.error(errorMessage);
     }
 
@@ -76,37 +76,37 @@ api.interceptors.response.use(
 export const authAPI = {
   // Sign up
   signup: async (userData) => {
-    const response = await api.post("/api/signup", userData);
+    const response = await api.post("/signup", userData);
     return response.data;
   },
 
   // Sign in
   signin: async (credentials) => {
-    const response = await api.post("/api/signin", credentials);
+    const response = await api.post("/signin", credentials);
     return response.data;
   },
 
   // Refresh token
   refreshToken: async (refreshToken) => {
-    const response = await api.post("/api/refresh", { refreshToken });
+    const response = await api.post("/refresh", { refreshToken });
     return response.data;
   },
 
   // Get current user profile
   getProfile: async () => {
-    const response = await api.get("/api/profile");
+    const response = await api.get("/profile");
     return response.data;
   },
 
   // Update profile
   updateProfile: async (profileData) => {
-    const response = await api.put("/api/profile", profileData);
+    const response = await api.put("/profile", profileData);
     return response.data;
   },
 
   // Check auth status
   checkAuthStatus: async () => {
-    const response = await api.get("/api");
+    const response = await api.get("/");
     return response.data;
   },
 };

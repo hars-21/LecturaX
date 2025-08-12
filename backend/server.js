@@ -38,7 +38,7 @@ app.get("/health", (req, res) => {
 
 // API Routes
 app.use("/api", userRoutes);
-app.use("/api/dashboard", dashboardRoutes);
+app.use("/api", dashboardRoutes);
 
 // 404 handler for unknown routes
 app.all("*", (req, res, next) => {

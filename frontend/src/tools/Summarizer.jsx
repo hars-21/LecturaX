@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/Summarizer.css";
+import { apiRequest } from "../services/api";
 
 export default function Summarizer() {
   const [inputText, setInputText] = useState("");
@@ -13,10 +13,10 @@ export default function Summarizer() {
     setSummary("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/summarize", {
+      const res = await apiRequest.post("/summarize", {
         text: inputText,
       });
-      setSummary(res.data.summary);
+      setSummary(res.summary);
     } catch (err) {
       console.error(err);
       setSummary("Error: Unable to summarize.");
