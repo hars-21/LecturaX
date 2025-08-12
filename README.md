@@ -1,63 +1,60 @@
-# Lecturax: The Chaos Edition 🧪
+# ThinkDock (formerly LecturaX) 🛠️💡
 
-Welcome to Lecturax, the EdTech platform where learning meets hilarious, unpredictable chaos. This project is a revival of an abandoned hackathon app, reimagined as a fun, interactive showcase of full-stack development and creative AI integration.
+ThinkDock is a mini AI toolkit that brings together quick, practical AI-powered tools in one clean dashboard.
 
-The core philosophy? Learning should be effective, but who says it can't be delightfully absurd?
+Originally started as an ambitious EdTech project (LecturaX), it was left midway — but has now been revamped into a smaller, functional side project perfect for learning, experimenting, and showcasing full-stack skills.
 
-**➡️ Live Demo: [LecturaX](https://lecturax.onrender.com/)**
+The goal?
+Make AI utilities accessible, minimal, and actually useful without the complexity of a giant platform.
+🚀 Live Demo
 
-**The Star Feature:** The Chaos Lecture
+### **➡️ Try [ThinkDock](https://lecturax.onrender.com/)**
 
-At the heart of Lecturax is a unique learning experience. Here's how it works:
+## 📦 Features
 
-    A user enters any topic they want to learn about.
+Currently, ThinkDock includes three core AI tools:
 
-    Our AI generates a comprehensive, well-structured lecture on that topic.
+**AI Summarizer 📝**
 
-    The user then tries to read it.
+Paste any text and get a clear, concise summary in seconds.
 
-The catch? The user interface actively works against you. The lecture becomes a dynamic entity that tries to break your concentration with a series of random, chaotic events.
+**Idea Generator 💡**
 
-Some of the chaos you might encounter:
+Input a topic or problem and get 5 fresh, creative ideas instantly.
 
-**Shaky Text:** The very paragraph you're reading begins to tremble.
+**Keyword Extractor 🔑**
 
-**Rebellious Scrollbar:** The scrollbar develops a mind of its own, resisting your control.
+Extract the most important keywords from any text for research, SEO, or quick reference.
 
-**Font Frenzy:** Text randomly switches to absurd fonts like Comic Sans or Wingdings.
+Each tool runs in a single dashboard interface with authentication, so you can keep your results private and organized.
 
-**Word Replacer:** Key terms are spontaneously replaced with related emojis (e.g., "science" becomes "🧪").
+## 🛠️ Tech Stack
 
-**Sudden Banners:** Absurd and fake "Cookie Consent" or "Subscribe to our Newsletter" banners appear at the worst possible moments.
+### Frontend:
 
-The challenge isn't just to learn the material, but to see if you can outlast the chaos!
-Tech Stack
-
-This project was built using the MERN stack, focusing on a fast, responsive user experience and a robust backend to handle AI integration.
-
-## Frontend:
-
-**React:** For building the dynamic user interface.
+**React (Vite)** – Fast, modern UI.
 
 **Custom CSS:** All styling is done from scratch to maintain a unique look and feel without the bloat of a UI library.
 
+**Axios** – Easy API requests.
+
 **React Icons:** For clean and lightweight icons.
 
-## Backend:
+### Backend:
 
-**Node.js & Express:** For the server-side logic and API creation.
+**Node.js & Express** – Simple REST API for AI requests.
+
+**Gemini API** – Powers summarization, idea generation, and keyword extraction.
+
+**CORS + dotenv** – Security and environment management.
 
 **JSON Web Tokens (JWT):** For secure user authentication.
-
-## APIs & Services:
-
-**Generative AI:** Using the Gemini API to generate lecture content in real-time.
 
 **Database:** MongoDB for user account management.
 
 ## Getting Started Locally
 
-To run this project on your own machine, follow [Setup.md]()
+To run this project on your own machine, follow [Setup.md](https://github.com/hars-21/LecturaX/blob/main/Setup.md)
 
 ## Author
 
