@@ -1,4 +1,4 @@
-import { askGemini } from "../tools/gemini";
+import { askGemini } from "../tools/gemini.js";
 
 export const createSummary = async (req, res) => {
   const { text } = req.body;
@@ -15,6 +15,25 @@ export const createSummary = async (req, res) => {
     res.json({ success: true, summary });
   } catch (error) {
     console.error("Error occurred while summarizing text:", error);
+    res.status(500).json({ error: "An error occurred while processing your request." });
+  }
+};
+
+export const generateIdeas = async (req, res) => {
+  const { topic } = req.body;
+  const content = `Give me 5 unique and creative ideas for: ${topic}`;
+  const instruction = "You are a creative idea generator. Always return concise and clear ideas.";
+  const temperature = 0.8;
+
+  if (!topic) {
+    return res.status(400).json({ error: "Topic body parameter is required." });
+  }
+
+  try {
+    const ideas = await askGemini(instruction, content, temperature);
+    res.json({ success: true, ideas });
+  } catch (error) {
+    console.error("Error occurred while generating ideas:", error);
     res.status(500).json({ error: "An error occurred while processing your request." });
   }
 };

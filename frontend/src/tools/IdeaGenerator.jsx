@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/IdeaGenerator.css";
+import { apiRequest } from "../services/api";
 
 export default function IdeaGenerator() {
   const [topic, setTopic] = useState("");
@@ -13,10 +13,10 @@ export default function IdeaGenerator() {
     setIdeas("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/idea-generator", {
+      const res = await apiRequest.post("/generateIdeas", {
         topic,
       });
-      setIdeas(res.data.ideas);
+      setIdeas(res.ideas);
     } catch (err) {
       console.error(err);
       setIdeas("Error: Unable to generate ideas.");
