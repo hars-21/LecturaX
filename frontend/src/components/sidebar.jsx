@@ -2,18 +2,15 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   FaHome,
-  FaChartLine,
-  FaBookOpen,
-  FaQuestionCircle,
-  FaClipboardList,
-  FaCalendarAlt,
-  FaVideo,
+  FaLightbulb,
   FaHeadset,
   FaEnvelope,
   FaChevronLeft,
   FaChevronRight,
 } from "react-icons/fa";
 import "../styles/sidebar.css";
+import { TbTextRecognition } from "react-icons/tb";
+import { LuReceiptText } from "react-icons/lu";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,52 +28,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       color: "#00b4db",
     },
     {
-      icon: <FaChartLine />,
-      label: "My Analytics",
-      path: "/dashboard/analytics",
+      icon: <LuReceiptText />,
+      label: "AI Summarizer",
+      path: "/dashboard/ai-summarizer",
       color: "#f7b733",
     },
     {
-      icon: <FaBookOpen />,
-      label: "Courses",
-      path: "/dashboard/courses",
+      icon: <FaLightbulb />,
+      label: "Idea Generator",
+      path: "/dashboard/idea-generator",
       color: "#f05053",
     },
     {
-      icon: <FaVideo />,
-      label: "Live Classes",
-      path: "/dashboard/classes",
+      icon: <TbTextRecognition />,
+      label: "Keyword Extractor",
+      path: "/dashboard/keyword-extractor",
       color: "#e53935",
-    },
-    {
-      icon: <FaQuestionCircle />,
-      label: "Doubt Solving",
-      path: "/dashboard/doubt",
-      color: "#4caf50",
-    },
-    {
-      icon: <FaClipboardList />,
-      label: "Tests & Results",
-      path: "/dashboard/test",
-      color: "#9c27b0",
-    },
-    {
-      icon: <FaCalendarAlt />,
-      label: "Time-Table",
-      path: "/dashboard/timetable",
-      color: "#ff9800",
     },
     {
       icon: <FaHeadset />,
       label: "Support",
-      path: "/dashboard/support",
+      path: "/support",
       color: "#2196f3",
     },
     {
       icon: <FaEnvelope />,
       label: "Contact",
-      path: "/dashboard/contact",
-      color: "#607d8b",
+      path: "/contact",
+      color: "#9c27b0",
     },
   ];
 
@@ -102,7 +81,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                 </div>
                 <div className="logo-text">
                   <h3>LecturaX</h3>
-                  <p>Learning Hub</p>
+                  <p>The AI Toolkit</p>
                 </div>
               </>
             )}

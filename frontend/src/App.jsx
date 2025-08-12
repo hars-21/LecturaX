@@ -13,6 +13,9 @@ import About from "./pages/about";
 import Support from "./pages/support";
 import Privacy from "./pages/privacy";
 import Terms from "./pages/terms";
+import Summarizer from "./tools/Summarizer";
+import IdeaGenerator from "./tools/IdeaGenerator";
+import KeywordExtractor from "./tools/KeywordExtractor";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -103,6 +106,10 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="ai-summarizer" element={<Summarizer />} />
+            <Route path="idea-generator" element={<IdeaGenerator />} />
+            <Route path="keyword-extractor" element={<KeywordExtractor />} />
+            <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
         <ToastContainer
