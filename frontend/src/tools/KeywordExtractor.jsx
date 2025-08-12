@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import "../styles/KeywordExtractor.css";
+import { apiRequest } from "../services/api";
 
 export default function KeywordExtractor() {
   const [inputText, setInputText] = useState("");
@@ -13,10 +13,10 @@ export default function KeywordExtractor() {
     setKeywords("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/keyword-extractor", {
+      const res = await apiRequest.post("/extract", {
         text: inputText,
       });
-      setKeywords(res.data.keywords);
+      setKeywords(res.keywords);
     } catch (err) {
       console.error(err);
       setKeywords("Error: Unable to extract keywords.");
