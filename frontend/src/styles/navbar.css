@@ -39,16 +39,23 @@
   display: flex;
   align-items: center;
   z-index: 1001;
+  transition: transform 0.3s ease;
 }
 
 .logo {
   width: 3.5rem;
   height: auto;
-  transition: transform 0.3s ease;
 }
 
-.logo:hover {
+.navbar-logo:hover {
   transform: scale(1.05);
+}
+
+.logo-name {
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffa200;
 }
 
 /* Hamburger Menu (for Mobile) */
@@ -74,10 +81,6 @@
 .menu-button:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: scale(1.1);
-}
-
-.menu-button:focus {
-  box-shadow: 0 0 0 2px rgba(255, 162, 0, 0.5);
 }
 
 /* Desktop Navigation Links */
@@ -138,7 +141,7 @@
 
 /* Navigation Links Styling */
 .nav-link {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1.5rem !important;
   color: #ffffff;
   text-decoration: none;
   font-size: 0.95rem;
@@ -157,11 +160,6 @@
 .nav-link.active {
   color: #ffa200;
   background: rgba(255, 162, 0, 0.15);
-}
-
-.nav-link:focus {
-  outline: 2px solid rgba(255, 162, 0, 0.5);
-  outline-offset: 2px;
 }
 
 /* Navigation Options */

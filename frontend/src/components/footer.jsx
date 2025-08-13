@@ -1,59 +1,63 @@
-import React from "react";
 import "../styles/footer.css";
 import { Link } from "react-router-dom";
-import logo from "/assets/logo.png";
+import logo from "/assets/logo.svg";
 import {
-  FaPhone,
   FaEnvelope,
-  FaInstagram,
   FaLinkedinIn,
-  FaDiscord,
-  FaXTwitter,
   FaArrowRightLong,
+  FaGithub,
+  FaCode,
+  FaLightbulb,
+  FaGlobe,
+  FaReact,
 } from "react-icons/fa6";
+import { FaSearch } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-container arima">
+      <div className="footer-container">
         <div className="footer-section head-footer">
-          <img src={logo} alt="Logo" className="logo" />
-          <div className="footer-heading-main">Master Skills with AI-Powered Precision</div>
-          <Link to="/signin" className="animated-btn">
-            Join Now <FaArrowRightLong />
+          <div className="footer-brand">
+            <img src={logo} alt="ThinkDock Logo" className="logo" />
+            <h2 className="brand-name arima">ThinkDock</h2>
+          </div>
+          <div className="footer-heading-main">
+            Your quick-access AI desk — summarize, create, and explore in seconds.
+          </div>
+          <Link to="/dashboard" className="animated-btn">
+            Get Started <FaArrowRightLong />
           </Link>
         </div>
 
-        {/* Company Links */}
+        {/* AI Tools */}
         <div className="footer-section">
-          <h3 className="footer-heading">Pages</h3>
+          <h3 className="footer-heading">AI Tools</h3>
           <ul className="footer-links">
             <li>
-              <Link to="/" className="underline-animation">
-                Home
+              <Link to="/dashboard" className="tool-link">
+                <FaCode className="tool-icon" />
+                <span className="underline-animation">AI Summarizer</span>
               </Link>
             </li>
             <li>
-              <Link to="/services" className="underline-animation">
-                Services
+              <Link to="/dashboard" className="tool-link">
+                <FaLightbulb className="tool-icon" />
+                <span className="underline-animation">Idea Generator</span>
               </Link>
             </li>
             <li>
-              <Link to="/faq" className="underline-animation">
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link to="/pricing" className="underline-animation">
-                Pricing
+              <Link to="/dashboard" className="tool-link">
+                <FaSearch className="tool-icon" />
+                <span className="underline-animation">Keyword Extractor</span>
               </Link>
             </li>
           </ul>
         </div>
 
-        {/* Company Links */}
+        {/* Project Links */}
         <div className="footer-section">
-          <h3 className="footer-heading">Company</h3>
+          <h3 className="footer-heading">Project</h3>
           <ul className="footer-links">
             <li>
               <Link to="/about" className="underline-animation">
@@ -80,27 +84,46 @@ const Footer = () => {
 
         {/* Contact Information */}
         <div className="footer-section">
-          <h3 className="footer-heading">Get in Touch</h3>
-          <a href="tel:+919898057571" className="footer-info">
-            <FaPhone />
-            <span className="underline-animation">+91 98980 57571</span>
-          </a>
+          <h3 className="footer-heading">Connect</h3>
           <a href="mailto:help.lecturax@gmail.com" className="footer-info">
-            <FaEnvelope /> <span className="underline-animation">help.lecturax@gmail.com</span>
+            <FaEnvelope />
+            <span className="underline-animation">help.lecturax@gmail.com</span>
           </a>
+          <a
+            href="https://github.com/hars-21/ThinkDock"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-info"
+          >
+            <FaGithub />
+            <span className="underline-animation">GitHub Repository</span>
+          </a>
+
           {/* Social Links */}
           <div className="social-icons">
-            <a href="https://x.com/" target="_blank">
-              <FaXTwitter />
+            <a
+              href="https://github.com/hars-21"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="GitHub"
+            >
+              <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/" target="_blank">
+            <a
+              href="https://www.linkedin.com/in/harshil-sync/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="LinkedIn"
+            >
               <FaLinkedinIn />
             </a>
-            <a href="https://www.instagram.com/" target="_blank">
-              <FaInstagram />
-            </a>
-            <a href="https://discord.com/" target="_blank">
-              <FaDiscord />
+            <a
+              href="https://harshilgupta.xyz"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Website"
+            >
+              <FaGlobe />
             </a>
           </div>
         </div>
@@ -109,7 +132,8 @@ const Footer = () => {
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p className="footer-copyright montserrat">
-          © 2024 LecturaX Technologies Pvt Ltd. All Rights Reserved.
+          © 2025 ThinkDock. Built with <FaReact className="react-icon" /> by Harshil Gupta. All
+          Rights Reserved.
         </p>
       </div>
     </footer>

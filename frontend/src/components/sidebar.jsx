@@ -1,24 +1,29 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  FaHome,
-  FaLightbulb,
-  FaHeadset,
-  FaEnvelope,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { FaHome, FaLightbulb, FaHeadset, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../styles/sidebar.css";
 import { TbTextRecognition } from "react-icons/tb";
 import { LuReceiptText } from "react-icons/lu";
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
-  const [collapsed, setCollapsed] = useState(false);
+const Sidebar = ({ sidebarOpen, setSidebarOpen, sidebarCollapsed, setSidebarCollapsed }) => {
   const location = useLocation();
 
   const toggleCollapse = () => {
-    setCollapsed(!collapsed);
+    setSidebarCollapsed(!sidebarCollapsed);
   };
+
+  // Initialize collapsed state based on screen size
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setSidebarCollapsed(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setSidebarCollapsed]);
 
   const sidebarItems = [
     {
@@ -48,15 +53,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     {
       icon: <FaHeadset />,
       label: "Support",
-      path: "/support",
+      path: "/dashboard/support",
       color: "#2196f3",
     },
-    {
-      icon: <FaEnvelope />,
-      label: "Contact",
-      path: "/contact",
-      color: "#9c27b0",
-    },
+    // {
+    //   icon: <FaEnvelope />,
+    //   label: "Contact",
+    //   path: "/contact",
+    //   color: "#9c27b0",
+    // },
   ];
 
   const isActive = (path) => {
@@ -69,18 +74,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
 
       <aside
-        className={`modern-sidebar ${sidebarOpen ? "open" : ""} ${collapsed ? "collapsed" : ""}`}
+        className={`modern-sidebar ${sidebarOpen ? "open" : ""} ${sidebarCollapsed ? "collapsed" : ""}`}
       >
         {/* Header */}
         <div className="sidebar-header">
           <div className="logo-section">
-            {!collapsed && (
+            {!sidebarCollapsed && (
               <>
                 <div className="logo-icon">
-                  <span>L</span>
+                  <span>T</span>
                 </div>
                 <div className="logo-text">
-                  <h3>LecturaX</h3>
+                  <h3>ThinkDock</h3>
                   <p>The AI Toolkit</p>
                 </div>
               </>
@@ -91,16 +96,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           <button
             className="collapse-btn desktop-only"
             onClick={toggleCollapse}
-            title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+            title={sidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
           >
-            {collapsed ? <FaChevronRight /> : <FaChevronLeft />}
+            {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>
         </div>
 
         {/* Navigation */}
         <nav className="sidebar-nav">
           <div className="nav-section">
-            {!collapsed && <div className="nav-title">Main Menu</div>}
+            {!sidebarCollapsed && <div className="nav-title">Main Menu</div>}
             <ul className="nav-list">
               {sidebarItems.map((item, index) => (
                 <li key={index} className="nav-item">
@@ -108,7 +113,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     to={item.path}
                     className={`nav-link ${isActive(item.path) ? "active" : ""}`}
                     onClick={() => window.innerWidth <= 768 && setSidebarOpen(false)}
-                    title={collapsed ? item.label : ""}
+                    title={sidebarCollapsed ? item.label : ""}
                   >
                     <div
                       className="nav-icon"
@@ -116,7 +121,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                     >
                       {item.icon}
                     </div>
-                    {!collapsed && <span className="nav-label">{item.label}</span>}
+                    {!sidebarCollapsed && <span className="nav-label">{item.label}</span>}
                     {isActive(item.path) && (
                       <div className="active-indicator" style={{ backgroundColor: item.color }} />
                     )}

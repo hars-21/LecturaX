@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/navbar.css";
-import logo from "/assets/logo.png";
+import logo from "/assets/logo.svg";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useAuth } from "../contexts/AuthContext";
@@ -79,8 +79,9 @@ const Navbar = () => {
       <nav className={`navbar ${isVisible ? "navbar-visible" : "navbar-hidden"}`}>
         <div className="navbar-container">
           {/* Logo */}
-          <Link to="/" className="navbar-logo" aria-label="LecturaX Home">
-            <img src={logo} alt="LecturaX Logo" className="logo" />
+          <Link to="/" className="navbar-logo" aria-label="ThinkDock Home">
+            <img src={logo} alt="ThinkDock Logo" className="logo" />
+            <span className="gold arima logo-name">ThinkDock</span>
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -119,8 +120,8 @@ const Navbar = () => {
           <div className="nav-options">
             {/* Auth Buttons */}
             {!user ? (
-              <Link to="/signup" className="animated-btn" aria-label="Create Account">
-                Create Account
+              <Link to="/dashboard" className="animated-btn" aria-label="Try Now for Free">
+                Try Now for Free
               </Link>
             ) : (
               <ProfileDropdown />

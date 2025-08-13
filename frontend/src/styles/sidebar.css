@@ -290,8 +290,10 @@
 
     .modern-sidebar.collapsed.open {
         transform: translateX(0);
+        width: 17.5rem;
     }
 
+    /* Hide desktop collapse button on mobile */
     .collapse-btn.desktop-only {
         display: none;
     }
@@ -329,6 +331,13 @@
 
 .modern-sidebar.collapsed .logo-section {
     justify-content: center;
+}
+
+.modern-sidebar.collapsed .logo-text {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    overflow: hidden;
 }
 
 .modern-sidebar.collapsed .nav-link {

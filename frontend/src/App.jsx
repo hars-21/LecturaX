@@ -106,6 +106,7 @@ function App() {
           >
             <Route index element={<Dashboard />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="support" element={<Support />} />
             <Route path="ai-summarizer" element={<Summarizer />} />
             <Route path="idea-generator" element={<IdeaGenerator />} />
             <Route path="keyword-extractor" element={<KeywordExtractor />} />
