@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, useNavigation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeLayout from "./components/layouts/home";
 import DashboardLayout from "./components/layouts/dashboard";
 import Signin from "./pages/signin";
@@ -16,7 +16,6 @@ import Terms from "./pages/terms";
 import Summarizer from "./tools/Summarizer";
 import IdeaGenerator from "./tools/IdeaGenerator";
 import KeywordExtractor from "./tools/KeywordExtractor";
-import Loader from "./components/loader";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,12 +25,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute, PublicRoute } from "./components/ProtectedRoute";
 
 function App() {
-  const navigation = useNavigation();
-
   return (
     <AuthProvider>
       <BrowserRouter>
-        {navigation.state === "loading" && <Loader />}
         <Routes>
           <Route path="/" element={<HomeLayout />}>
             <Route
