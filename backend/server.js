@@ -19,10 +19,10 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(requestLogger);
 
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to the backend server",
-    version: "1.0.0",
+    version: "2.0.0",
     environment: process.env.NODE_ENV || "development",
   });
 });
