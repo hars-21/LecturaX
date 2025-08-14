@@ -120,8 +120,8 @@ const Navbar = () => {
           <div className="nav-options">
             {/* Auth Buttons */}
             {!user ? (
-              <Link to="/dashboard" className="animated-btn" aria-label="Try Now for Free">
-                Try Now for Free
+              <Link to="/dashboard" className="animated-btn" aria-label="Try Now">
+                Try Now
               </Link>
             ) : (
               <ProfileDropdown />

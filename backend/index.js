@@ -7,7 +7,7 @@ import app from "./server.js";
 dotenv.config();
 
 const port = config.server.port;
-const SERVER_START_MSG = `Express server started on port: ${port}`;
+const SERVER_START_MSG = `Server running on port: ${port}`;
 
 (async () => {
   try {
@@ -17,7 +17,6 @@ const SERVER_START_MSG = `Express server started on port: ${port}`;
     // Start the server
     app.listen(port, () => {
       console.log(SERVER_START_MSG);
-      console.log(`Server URL: http://localhost:${port}`);
     });
   } catch (error) {
     console.error("❌ Failed to start server:", error);

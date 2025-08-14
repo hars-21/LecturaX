@@ -19,10 +19,14 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(requestLogger);
 
-app.get("/api", (req, res) => {
+if (process.env.NODE_ENV === "production") {
+  console.log = function () {}; // disable console logs
+}
+
+app.get("/", (req, res) => {
   res.status(200).json({
     message: "Welcome to the backend server",
-    version: "1.0.0",
+    version: "2.0.0",
     environment: process.env.NODE_ENV || "development",
   });
 });
@@ -34,6 +38,13 @@ app.get("/health", (req, res) => {
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || "development",
   });
+});
+
+// Skip logging health checks
+app.use((req, res, next) => {
+  if (req.path === "/health") return next();
+  console.log(`${req.method} ${req.url}`);
+  next();
 });
 
 // API Routes
