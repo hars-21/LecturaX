@@ -8,7 +8,7 @@ The goal?
 Make AI utilities accessible, minimal, and actually useful without the complexity of a giant platform.
 🚀 Live Demo
 
-### **➡️ Try [ThinkDock](https://lecturax.onrender.com/)**
+### **➡️ Try [ThinkDock](https://thinkdock.vercel.app/)**
 
 ## 📦 Features
 
@@ -54,7 +54,7 @@ Each tool runs in a single dashboard interface with authentication, so you can k
 
 ## Getting Started Locally
 
-To run this project on your own machine, follow [Setup.md](https://github.com/hars-21/LecturaX/blob/main/Setup.md)
+To run this project on your own machine, follow [Setup.md](https://github.com/hars-21/thinkdock/blob/main/Setup.md)
 
 ## Author
 
