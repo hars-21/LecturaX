@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import Loader from "./loader";
 
 // Protected Route Component
 const ProtectedRoute = ({ children, requireAuth = true, redirectTo = "/signin" }) => {
@@ -8,12 +9,7 @@ const ProtectedRoute = ({ children, requireAuth = true, redirectTo = "/signin" }
 
   // Show loading spinner while checking authentication
   if (isLoading) {
-    return (
-      <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p>Loading...</p>
-      </div>
-    );
+    return <Loader />;
   }
 
   // If route requires authentication and user is not authenticated
